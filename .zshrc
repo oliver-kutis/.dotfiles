@@ -24,9 +24,9 @@ unset __conda_setup
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
 export PATH="/usr/local/opt/node@18/bin:$PATH"
-export PATH="/usr/local/opt/node@18/bin:$PATH"
-export HOMEBREW_NO_AUTO_UDPATE=1
+export HOMEBREW_NO_AUTO_UDPATE=1 # Disable auto-update for homebrew
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/kutis/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kutis/google-cloud-sdk/path.zsh.inc'; fi
@@ -48,9 +48,9 @@ export SPARK_HOME=/opt/homebrew/Cellar/apache-spark/3.5.4/libexec
 export PATH="$SPARK_HOME/bin/:$PATH"
 
 # Add PySpark to PYTHONPATH
-export PYTHONPATH="${SPARK_HOME}/python/:$PYTHONPATH"
 export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.9.7-src.zip:$PYTHONPATH"
 export TASKFILE_HOME=/Users/kutis/Documents/Github/gauss-algo-hw/bin
+
 # Completions for taskfile
 eval "$(task --completion zsh)"
 
@@ -77,6 +77,7 @@ bindkey "\u0015" kill-whole-line
 # ---- Eza (better ls) -----
 alias ls="eza --icons=always"
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # ---- Zoxide (better cd) ----
 eval "$(zoxide init zsh)"
 alias cd="z"
