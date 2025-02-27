@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("oliver.plugins", {
+require("lazy").setup({ { import = "oliver.plugins" }, { import = "oliver.plugins.lsp" } }, {
   change_detection = {
     notify = false, -- change to false to disable notifications of config changes
   },
