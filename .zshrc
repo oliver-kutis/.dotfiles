@@ -25,7 +25,9 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-export PATH="/usr/local/opt/node@18/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/node@20/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/node@20/include"
 export HOMEBREW_NO_AUTO_UDPATE=1 # Disable auto-update for homebrew
 
 # The next line updates PATH for the Google Cloud SDK.
