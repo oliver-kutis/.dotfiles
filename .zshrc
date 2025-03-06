@@ -21,9 +21,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Add pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+# Add pyenv-virtualenv
+eval "$(pyenv virtualenv-init -)"
 
 export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/node@20/lib"
