@@ -19,7 +19,8 @@ return {
 				graphql = { "prettier" },
 				liquid = { "prettier" },
 				lua = { "stylua" },
-				python = { "isort", "black" },
+				-- python = { "isort", "black" },
+				python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
 				terraform = { "terraform_fmt" },
 			},
 			format_on_save = {
@@ -28,6 +29,10 @@ return {
 				timeout_ms = 1000,
 			},
 		})
+
+		conform.formatters.ruff = {
+			prepend_args = { "--extend-select", "I", "--line-length", "79" },
+		}
 
 		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
 			conform.format({

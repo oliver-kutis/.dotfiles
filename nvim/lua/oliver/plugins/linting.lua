@@ -11,9 +11,13 @@ return {
 			javascriptreact = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
 			svelte = { "eslint_d" },
-			python = { "pylint" },
+			python = { "ruff" },
 			-- terraform = {},
 		}
+
+		--[[ lint.ruff = {
+      args = { '--extend-select', 'I' }
+    } ]]
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 

@@ -1,4 +1,5 @@
 vim.cmd("let g:netrw_liststyle = 3")
+vim.cmd("let g:python3_host_prog = '/Users/kutis/.pyenv/versions/py3nvim/bin/python'")
 
 local opt = vim.opt
 
@@ -11,7 +12,7 @@ opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy ident from current line when starting new one
 
-opt.wrap = false -- don't wrap the lines 
+opt.wrap = false -- don't wrap the lines
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
@@ -33,5 +34,3 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 -- split windows
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
-
-

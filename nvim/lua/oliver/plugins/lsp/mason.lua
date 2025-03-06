@@ -25,7 +25,7 @@ return {
 		})
 
 		mason_lspconfig.setup({
-			-- list of servers for mason to install
+			-- list of language servers for mason to install
 			ensure_installed = {
 				"dockerls",
 				"terraformls",
@@ -37,16 +37,20 @@ return {
 				"svelte",
 				"lua_ls",
 				"emmet_ls",
-				"pyright",
+				-- "pyright",
+				"pylsp",
+				"ruff",
 			},
 		})
 
 		mason_tool_installer.setup({
 			ensure_installed = {
+				-- Formatters
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
-				"isort", -- python formatter
-				"black", -- python formatter
+				-- "mypy", -- python formatter
+				-- "isort", -- python formatter
+				-- "black", -- python formatter
 			},
 		})
 	end,
