@@ -3,6 +3,12 @@
 Creation of this repository is motivated the fact that I've started to use
 Alacritty terminal and Neovim.
 
+One resource that really helped me with this is the video from Fireship:
+
+- https://www.youtube.com/watch?v=r_MpUP6aKiQ
+  And accompanying repository:
+- https://github.com/eieioxyz/Beyond-Dotfiles-in-100-Seconds
+
 ## alacritty (terminal)
 
 The entire alacritty config is mostly based on this [article](https://www.josean.com/posts/how-to-setup-alacritty-terminal)
