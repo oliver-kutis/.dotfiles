@@ -1,3 +1,4 @@
+return {}
 --[[ return {
 	"linux-cultist/venv-selector.nvim",
 	dependencies = {
