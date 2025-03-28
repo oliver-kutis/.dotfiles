@@ -2,9 +2,11 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
+-- utils
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
-
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move half the page UP and center cursor on the screen" })
+keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move half the page DOWN and center cursor on the screen" })
 
 -- increment/decrement numbers
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
