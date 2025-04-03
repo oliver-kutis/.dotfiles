@@ -13,6 +13,8 @@ One resource that really helped me with this is the video from Fireship:
 
 The entire alacritty config is mostly based on this [article](https://www.josean.com/posts/how-to-setup-alacritty-terminal)
 
+To configure ability to have itallic fonts, I used this [guide](https://michenriksen.com/posts/italic-text-in-alacritty-tmux-neovim/)
+
 ## .p10k.zsh (custom zsh terminal)
 
 Making the terminal less boring :D
