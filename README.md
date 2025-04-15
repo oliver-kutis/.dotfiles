@@ -9,6 +9,8 @@ One resource that really helped me with this is the video from Fireship:
   And accompanying repository:
 - https://github.com/eieioxyz/Beyond-Dotfiles-in-100-Seconds
 
+> Note: Most of the files are linked using a symlink either to ~ or to ~/.config
+
 ## alacritty (terminal)
 
 The entire alacritty config is mostly based on this [article](https://www.josean.com/posts/how-to-setup-alacritty-terminal)
