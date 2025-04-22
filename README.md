@@ -56,3 +56,7 @@ This again was configured with help of this [vid](https://www.youtube.com/watch?
 and this [article](https://www.josean.com/posts/how-to-setup-neovim-2024)
 
 At the time of creation of this repo, I'm completely new to Neovim.
+
+## Tmux
+
+I was following this guide to set it up: https://www.josean.com/posts/tmux-setup
