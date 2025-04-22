@@ -11,6 +11,32 @@ One resource that really helped me with this is the video from Fireship:
 
 > Note: Most of the files are linked using a symlink either to ~ or to ~/.config
 
+## Global gitignore guide for MacOS
+
+Find all the files
+
+```
+find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
+```
+
+If already commited
+
+```
+find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch
+```
+
+Add the .DS_Store to global `.gitignore`
+
+```
+echo ".DS_Store" >> ~/.gitignore_global
+echo "._.DS_Store" >> ~/.gitignore_global
+echo "**/.DS_Store" >> ~/.gitignore_global
+echo "**/._.DS_Store" >> ~/.gitignore_global
+```
+
+Configure git to use this global file
+git config --global core.excludesfile ~/.gitignore_global
+
 ## alacritty (terminal)
 
 The entire alacritty config is mostly based on this [article](https://www.josean.com/posts/how-to-setup-alacritty-terminal)
