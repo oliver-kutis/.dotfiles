@@ -13,6 +13,8 @@ One resource that really helped me with this is the video from Fireship:
 
 ## Global gitignore guide for MacOS
 
+Taken from: https://gist.github.com/lohenyumnam/2b127b9c3d1435dc12a33613c44e6308
+
 Find all the files
 
 ```
