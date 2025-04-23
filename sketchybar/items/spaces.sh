@@ -18,16 +18,16 @@ done
 sketchybar --add item space_separator left                             \
            --set space_separator icon="􀆊"                               \
                                  icon.color=$ACCENT_COLOR \
-                                 icon.padding_left=4                   \
+                                 icon.padding_left=3                   \
                                  label.drawing=off                     \
                                  background.drawing=off                \
                                  script="$PLUGIN_DIR/space_windows.sh" \
            --subscribe space_separator space_windows_change
 
-sketchybar --add bracket spaces '/space\/..*/'                         \
-           --set spaces background.color=$BAR_COLOR  \
-                        background.corner_radius=4 \
-                        background.height=20 \
-                        background.drawing=on
+# sketchybar --add bracket spaces space_separator space.1 front_app                        \
+#            --set spaces background.color=$BAR_COLOR  \
+#                         background.corner_radius=30 \
+#                         background.height=30 \
+#                         background.drawing=on
                 
 

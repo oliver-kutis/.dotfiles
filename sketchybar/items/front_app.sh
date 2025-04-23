@@ -2,6 +2,7 @@
 
 sketchybar --add item front_app left \
            --set front_app       background.color=$ACCENT_COLOR \
+                                 background.height=20 \
                                  background.corner_radius=8     \
                                  icon.color=$BAR_COLOR \
                                  icon.font="sketchybar-app-font:Regular:14.0" \

@@ -7,7 +7,6 @@
 
 if [ "$SENDER" = "front_app_switched" ]; then
   sketchybar --set $NAME label="$INFO" icon="$($CONFIG_DIR/plugins/icon_map_fn.sh "$INFO")"
-             --set $NAME icon.background.image.scale = 0.8 \
-             --set $NAME icon.background.image.scale = 0.8 
+             --set $NAME icon.background.image.scale = 0.8
             
 fi
