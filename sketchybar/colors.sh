@@ -1,14 +1,73 @@
-#!/bin/bash
 
 export WHITE=0xffffffff
 export TRANSPARENT=0x00000000
 export BACKGROUND_1=0x603c3e4f
 export BACKGROUND_2=0x60494d64
 
+# Catpuccin Mocha https://github.com/catppuccin/catppuccin#-palette
+CATPUCCIN=(
+  blue "#89b4fa"
+  teal "#94e2d5"
+  cyan "#89dceb"
+  grey "#585b70"
+  green "#a6e3a1"
+  yellow "#f9e2af"
+  orange "#fab387"
+  red "#f38ba8"
+  purple "#cba6f7"
+  maroon "#eba0ac"
+  black "#1e1e2e"
+  trueblack "#000000"
+  white "#cdd6f4"
+  true_white "#ffffff"
+)
+
+COLORS=("${CATPUCCIN[@]}")
+
+getcolor() {
+  COLOR_NAME=$1
+  local COLOR=""
+
+  if [[ -z $2 ]]; then
+    OPACITY=100
+  else
+    OPACITY=$2
+  fi
+
+  # Loop through the array to find the color hex by name
+  for ((i = 0; i < ${#COLORS[@]}; i += 2)); do
+    if [[ "${COLORS[i]}" == "$COLOR_NAME" ]]; then
+      COLOR="${COLORS[i + 1]}"
+      break
+    fi
+  done
+
+  # Check if color was found
+  if [[ -z $COLOR ]]; then
+    echo "Invalid color name: $COLOR_NAME" >&2
+    return 1
+  fi
+
+  echo $(PERCENT2HEX $OPACITY)${COLOR:1}
+}
+
+PERCENT2HEX() {
+  local PERCENTAGE=$1
+  local DECIMAL=$(((PERCENTAGE * 255) / 100))
+  printf "0x%02X\n" "$DECIMAL"
+}
+
+export TEXT_COLOR=$(getcolor white)
+export BAR_COLOR=$(getcolor grey 40)
+export ITEM_BG_COLOR=$(getcolor black 60)
+export GROUP_BG_COLOR=$(getcolor white 70)
+export ACCENT_COLOR=$(getcolor trueblack)
+export HIGHLIGHT=$(getcolor red)
+
 # -- Teal Scheme --
-export BAR_COLOR=0xff001f30
-export ITEM_BG_COLOR=0xff003547
-export ACCENT_COLOR=0xff2cf9ed
+# export BAR_COLOR=0xff001f30
+# export ITEM_BG_COLOR=0xff003547
+# export ACCENT_COLOR=0xff2cf9ed
 
 # -- Gray Scheme --
 # export BAR_COLOR=0xff101314

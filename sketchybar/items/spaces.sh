@@ -16,8 +16,8 @@ do
 done
 
 sketchybar --add item space_separator left                             \
-           --set space_separator icon="􀆊"                               \
-                                 icon.color=$ACCENT_COLOR \
+           --set space_separator icon="􁀘"                               \
+                                 icon.color=$TEXT_COLOR \
                                  icon.padding_left=3                   \
                                  label.drawing=off                     \
                                  background.drawing=off                \

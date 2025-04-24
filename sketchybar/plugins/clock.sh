@@ -4,5 +4,7 @@
 # the item invoking this script:
 # https://felixkratz.github.io/SketchyBar/config/events#events-and-scripting
 
-sketchybar --set "$NAME" label="$(date '+%d/%m %H:%M')"
+source "$CONFIG_DIR/colors.sh" # Loads all defined colors
+
+sketchybar --set "$NAME" label="$(date '+%d/%m %H:%M')" label.color=$TEXT_COLOR
 

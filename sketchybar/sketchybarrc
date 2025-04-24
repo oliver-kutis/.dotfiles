@@ -5,27 +5,30 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 ITEM_DIR="$CONFIG_DIR/items"
 
 bracket_defaults=(
-  background.color=$BAR_COLOR   
+  # background.color=$GROUP_BG_COLOR   
   background.corner_radius=30  
-  background.height=30  
+  background.height=27
   # background.drawing=on
 )
 
 ##### Bar Appearance #####
 bar=(
-  # corner_radius=12
   height=33
-  color=$TRANSPARENT
+  # color=$TRANSPARENT
+  # color=0x33000000
+  color=$BAR_COLOR
   border_width=1
   border_color=$TRANSPARENT
   shadow=off
   position=top
   sticky=on
   y_offset=0
-  padding_left=4
-  padding_right=4
-  margin=5
+  padding_left=8
+  padding_right=8
+  # margin=5
   topmost=window
+  blur_radius=32
+  # corner_radius=12
 )
 
 sketchybar --bar "${bar[@]}"
@@ -35,15 +38,15 @@ sketchybar --bar "${bar[@]}"
 default=(
   padding_left=5
   padding_right=5
-  icon.font="SF Pro:Semibold:14.0"
-  label.font="SF Pro:Semibold:14.0"
+  icon.font="SF Pro:Bold:14.0"
+  label.font="SF Pro:Bold:14.0"
   icon.color=$WHITE
   label.color=$WHITE
   icon.padding_left=4
   icon.padding_right=4
   label.padding_left=4
   label.padding_right=4
-  border_width=2
+  # border_width=2
 )
 sketchybar --default "${default[@]}"
 
@@ -54,13 +57,14 @@ sketchybar --add bracket spaces space_separator front_app space.1 \
             --set spaces "${bracket_defaults[@]}" \
 
 ##### Adding Right Items #####
-# source "$ITEM_DIR/media.sh"
 source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/battery.sh"
+source "$ITEM_DIR/wifi.sh"
+source "$ITEM_DIR/spotify.sh"
 
-sketchybar --add bracket status battery volume calendar \
-            --set status "${bracket_defaults[@]}" \
+# sketchybar --add bracket status battery volume calendar wifi music \
+#             --set status "${bracket_defaults[@]}" \
 
 # Finishing the setup
 sketchybar --hotload on
