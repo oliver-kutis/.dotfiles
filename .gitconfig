@@ -8,4 +8,4 @@
 	process = git-lfs filter-process
 	required = true
 [core]
-	excludesfile = /Users/kutis/.gitignore_global
+	excludesfile = /Users/oliver/.gitignore_global
