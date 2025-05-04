@@ -20,7 +20,9 @@ CATPUCCIN=(
   trueblack "#000000"
   white "#cdd6f4"
   true_white "#ffffff"
+  zaitra_green "#1ED760"
 )
+
 
 COLORS=("${CATPUCCIN[@]}")
 
@@ -57,10 +59,13 @@ PERCENT2HEX() {
   printf "0x%02X\n" "$DECIMAL"
 }
 
+export ALT_TEXT_COLOR=$(getcolor zaitra_green)
 export TEXT_COLOR=$(getcolor white)
-export BAR_COLOR=$(getcolor grey 40)
-export ITEM_BG_COLOR=$(getcolor black 60)
-export GROUP_BG_COLOR=$(getcolor white 70)
+export BAR_COLOR=$(getcolor trueblack 50)
+# export BAR_COLOR=$(getcolor grey 50)
+# export ITEM_BG_COLOR=$(getcolor blue)
+export ITEM_BG_COLOR=$(getcolor zaitra_green)
+export GROUP_BG_COLOR=$(getcolor zaitra_green 30)
 export ACCENT_COLOR=$(getcolor trueblack)
 export HIGHLIGHT=$(getcolor red)
 

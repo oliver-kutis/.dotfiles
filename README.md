@@ -60,3 +60,20 @@ At the time of creation of this repo, I'm completely new to Neovim.
 ## Tmux
 
 I was following this guide to set it up: https://www.josean.com/posts/tmux-setup
+
+## Sketchybar
+
+Resources and inspiration:
+TODO:
+
+running with homebrew
+
+```bash
+brew services start sketchybar
+```
+
+running as debug
+
+```bash
+sketchybar
+```

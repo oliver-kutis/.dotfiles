@@ -2,7 +2,7 @@
 
 source "$CONFIG_DIR/colors.sh" # Loads all defined colors
 
-# PERCENTAGE=11
+# PERCENTAGE=50
 PERCENTAGE="$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)"
 CHARGING="$(pmset -g batt | grep 'AC Power')"
 
@@ -11,9 +11,9 @@ if [ "$PERCENTAGE" = "" ]; then
 fi
 
 case ${PERCENTAGE} in
-  9[0-9]|100) ICON="􀛨" ICON_COLOR=$(getcolor green)
+  9[0-9]|100) ICON="􀛨" ICON_COLOR=$(getcolor zaitra_green)
   ;;
-[6-8][0-9]) ICON="􀺸" ICON_COLOR=$(getcolor green 90)
+[6-8][0-9]) ICON="􀺸" ICON_COLOR=$(getcolor zaitra_green 90)
   ;;
 [3-5][0-9]) ICON="􀺶" ICON_COLOR=$(getcolor yellow)
   ;;

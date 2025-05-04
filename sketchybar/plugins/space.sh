@@ -6,15 +6,15 @@
 
 source "$CONFIG_DIR/colors.sh" # Loads all defined colors
 
-if [ $SELECTED = true ]; then
+if [ "$SELECTED" = true ]; then
   sketchybar --set $NAME background.drawing=on \
                          background.height=20 \
                          background.color=$ITEM_BG_COLOR \
-                         label.color=$TEXT_COLOR\
-                         icon.color=$TEXT_COLOR
+                         label.color=$ACCENT_COLOR \
+                         icon.color=$ACCENT_COLOR
 else
   sketchybar --set $NAME background.drawing=off \
                          background.height=20 \
-                         label.color=$TEXT_COLOR \
-                         icon.color=$TEXT_COLOR 
+                         label.color=$ALT_TEXT_COLOR \
+                         icon.color=$ALT_TEXT_COLOR 
 fi

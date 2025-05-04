@@ -16,13 +16,13 @@ do
 done
 
 sketchybar --add item space_separator left                             \
+           --subscribe space_separator space_windows_change   \
            --set space_separator icon="􁀘"                               \
-                                 icon.color=$TEXT_COLOR \
+                                 icon.color=$ALT_TEXT_COLOR \
                                  icon.padding_left=3                   \
                                  label.drawing=off                     \
                                  background.drawing=off                \
-                                 script="$PLUGIN_DIR/space_windows.sh" \
-           --subscribe space_separator space_windows_change
+                                 script="$PLUGIN_DIR/space_windows.sh" 
 
 # sketchybar --add bracket spaces space_separator space.1 front_app                        \
 #            --set spaces background.color=$BAR_COLOR  \

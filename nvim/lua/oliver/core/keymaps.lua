@@ -9,7 +9,7 @@ keymap.set("n", "<A-S-k>", ":t-1<CR>", { noremap = true, silent = true, desc = "
 keymap.set("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })
 keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
 -- Duplicate selected lines up and down
-keymap.set("v", "<A-S-j>", "y'>p", { noremap = true, silent = true })
+keymap.set("v", "<A-S-j>", "y'<P", { noremap = true, silent = true })
 keymap.set("v", "<A-S-k>", "y'<P", { noremap = true, silent = true })
 -- Move selected lines up and down
 keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Duplicate line below" })

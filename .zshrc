@@ -1,3 +1,10 @@
+export HOMEBREW_NO_AUTO_UDPATE=1 # Disable auto-update for homebrew
+
+# <<< 
+# >>> Powerlevel10k and other prompt configurations
+# <<<
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -5,60 +12,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/kutis/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/kutis/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/Users/kutis/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/kutis/miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# Add pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-# Add pyenv-virtualenv
-eval "$(pyenv virtualenv-init -)"
-
-export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/node@20/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/node@20/include"
-export HOMEBREW_NO_AUTO_UDPATE=1 # Disable auto-update for homebrew
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kutis/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kutis/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/kutis/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kutis/google-cloud-sdk/completion.zsh.inc'; fi
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+# source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/powerlevel10k/config/p10k-rainbow.zsh.
-[[ ! -f ~/powerlevel10k/config/p10k-rainbow.zsh ]] || source ~/powerlevel10k/config/p10k-rainbow.zsh
-
-export JAVA_HOME=/opt/homebrew/Cellar/openjdk@17/17.0.14
-export PATH="$JAVA_HOME/bin/:$PATH"
-
-export SPARK_HOME=/opt/homebrew/Cellar/apache-spark/3.5.4/libexec
-export PATH="$SPARK_HOME/bin/:$PATH"
-
-# Add PySpark to PYTHONPATH
-export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.9.7-src.zip:$PYTHONPATH"
-export TASKFILE_HOME=/Users/kutis/Documents/Github/gauss-algo-hw/bin
-
-# Completions for taskfile
-eval "$(task --completion zsh)"
+#[[ ! -f ~/powerlevel10k/config/p10k-rainbow.zsh ]] || source ~/powerlevel10k/config/p10k-rainbow.zsh
 
 # history setup
 HISTFILE=$HOME/.zhistory
@@ -88,3 +48,42 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(zoxide init zsh)"
 alias cd="z"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/kutis/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/kutis/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/Users/kutis/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/kutis/miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# Add pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+ eval "$(pyenv init -)"
+fi
+
+# Add pyenv-virtualenv
+eval "$(pyenv virtualenv-init -)"
+
+# export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
+# export LDFLAGS="-L/opt/homebrew/opt/node@20/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/node@20/include"
+
+# The next line updates PATH for the Google Cloud SDK.
+# if [ -f '/Users/kutis/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kutis/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+# if [ -f '/Users/kutis/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kutis/google-cloud-sdk/completion.zsh.inc'; fi
+
+# To customize prompt, run `p10k configure` or edit ~/code/.dotfiles/.p10k.zsh.
+[[ ! -f ~/code/.dotfiles/.p10k.zsh ]] || source ~/code/.dotfiles/.p10k.zsh
+
