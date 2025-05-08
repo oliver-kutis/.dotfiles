@@ -50,17 +50,15 @@ sketchybar --default "${default[@]}"
 
 # Register the aerospace events
 sketchybar --add event aerospace_workspace_change
-# sketchybar --add event window_change
+sketchybar --add event window_change
 
-# # Register a custom shell command to trigger the window_change event
-# # This command will be run every 2 seconds and when it detects a change in window count/distribution,
-# # it will trigger the window_change event
-# sketchybar --add item window_watcher right \
-#            --set window_watcher drawing=off \
-#            --set window_watcher update_freq=2 \
-#            --set window_watcher script="$PLUGIN_DIR/window_watcher.sh"
-
-
+# Register a custom shell command to trigger the window_change event
+# This command will be run every 2 seconds and when it detects a change in window count/distribution,
+# it will trigger the window_change event
+sketchybar --add item window_watcher right \
+           --set window_watcher drawing=off \
+           --set window_watcher update_freq=2 \
+           --set window_watcher script="$PLUGIN_DIR/window_watcher.sh"
 
 
 ##### Adding Left Items #####

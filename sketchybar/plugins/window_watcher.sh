@@ -24,6 +24,8 @@ if [ ! -f "$PREV_WINDOWS_FILE" ]; then
   echo "$current_windows" > "$PREV_WINDOWS_FILE"
   # Trigger event to set initial state
   sketchybar --trigger window_change
+  # Update workspace icons
+  $HOME/.config/sketchybar/plugins/update_workspace_icons.sh
   exit 0
 fi
 
@@ -36,4 +38,6 @@ if [ "$current_windows" != "$prev_windows" ]; then
   echo "$current_windows" > "$PREV_WINDOWS_FILE"
   # Trigger the window_change event
   sketchybar --trigger window_change
+  # Update workspace icons
+  $HOME/.config/sketchybar/plugins/update_workspace_icons.sh
 fi

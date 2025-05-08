@@ -13,13 +13,19 @@ after-login-command = []
 # Run Sketchybar together with AeroSpace
 # sketchbar has a built-in detection of already running process,
 # so it won't be run twice on AeroSpace restart
-after-startup-command = ['exec-and-forget sketchybar']
+after-startup-command = [
+    'exec-and-forget sketchybar',
+    'exec-and-forget borders active_color=0xFF1ED760 inactive_color=0xff494d64 width=5.0',
+]
 
 # Notify Sketchybar about workspace change and update icons
 exec-on-workspace-change = [
     '/bin/bash',
     '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE && ~/.config/sketchybar/plugins/update_workspace_icons.sh',
+    'sketchybar --trigger aerospace_workspace_change',
+    'FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+    'PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
+    '&& ~/.config/sketchybar/plugins/update_workspace_icons.sh',
 ]
 
 # Start AeroSpace at login
@@ -74,7 +80,7 @@ inner.vertical = 10
 outer.left = 10
 outer.bottom = 10
 # Increased top gap to accommodate sketchybar height (35px) plus a bit of padding
-outer.top = 38
+outer.top = [{ monitor.main = 38 }, 10]
 outer.right = 10
 
 # 'main' binding mode declaration
@@ -89,15 +95,21 @@ if.app-id = "com.apple.finder"
 run = "move-node-to-workspace F"
 [[on-window-detected]]
 if.app-id = "com.apple.Safari"
+run = "move-node-to-workspace S"
+[[on-window-detected]]
+if.app-id = "com.google.Chrome"
 run = "move-node-to-workspace B"
 [[on-window-detected]]
+if.app-id = "com.apple.MobileSMS"
+run = "move-node-to-workspace M"
+[[on-window-detected]]
 if.app-id = "com.spotify.client"
-run = "move-node-to-workspace S"
+run = "move-node-to-workspace M"
 [[on-window-detected]]
 if.app-id = "Mattermost.Desktop"
 run = "move-node-to-workspace M"
 [[on-window-detected]]
-if.app-id = "com.apple.Terminal"
+if.app-id = "org.alacritty"
 run = "move-node-to-workspace T"
 [[on-window-detected]]
 if.app-id = "com.openai.chat"
@@ -158,12 +170,12 @@ alt-equal = 'resize smart +50'
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'workspace 9'
+# alt-4 = 'workspace 4'
+# alt-5 = 'workspace 5'
+# alt-6 = 'workspace 6'
+# alt-7 = 'workspace 7'
+# alt-8 = 'workspace 8'
+# alt-9 = 'workspace 9'
 alt-b = 'workspace B' # browser
 alt-c = 'workspace C' # code
 alt-f = 'workspace F' # finder
@@ -176,12 +188,12 @@ alt-t = 'workspace T' # terminal
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-7 = 'move-node-to-workspace 7'
-alt-shift-8 = 'move-node-to-workspace 8'
-alt-shift-9 = 'move-node-to-workspace 9'
+# alt-shift-4 = 'move-node-to-workspace 4'
+# alt-shift-5 = 'move-node-to-workspace 5'
+# alt-shift-6 = 'move-node-to-workspace 6'
+# alt-shift-7 = 'move-node-to-workspace 7'
+# alt-shift-8 = 'move-node-to-workspace 8'
+# alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-b = 'move-node-to-workspace B' # browser
 alt-shift-c = 'move-node-to-workspace C' # code
 alt-shift-f = 'move-node-to-workspace F' # finder
@@ -220,6 +232,15 @@ alt-shift-l = ['join-with right', 'mode main']
 down = 'volume down'
 up = 'volume up'
 shift-down = ['volume set 0', 'mode main']
+
+[workspace-to-monitor-force-assignment]
+1 = 1      # Monitor sequence number from left to right. 1-based indexing
+2 = 'main' # Main monitor
+# 3 = 'secondary'                  # Non-main monitor in case when there are only two monitors
+# 4 = 'built-in'                   # Case insensitive regex substring
+# 5 = '^built-in retina display$'  # Case insensitive regex match
+# 6 = ['secondary', 'dell']        # You can specify multiple patterns.
+#                                  #   The first matching pattern will be used
 
 # New Layout binding mode
 # [mode.layout.binding]

@@ -14,6 +14,6 @@ for monitor in $(aerospace list-monitors --format "%{monitor-id}"); do
         else
             icon_strip=" —"
         fi
-        sketchybar --set space.$space label="$icon_strip"
+        sketchybar --set space.$sid label="$icon_strip"
     done
-done 
+done
