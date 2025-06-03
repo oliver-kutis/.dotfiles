@@ -1,4 +1,5 @@
 export HOMEBREW_NO_AUTO_UDPATE=1 # Disable auto-update for homebrew
+export ZAITRA_DATA_PATH="$HOME/data/zaitra"
 
 # <<< 
 # >>> Powerlevel10k and other prompt configurations
@@ -87,3 +88,13 @@ eval "$(pyenv virtualenv-init -)"
 # To customize prompt, run `p10k configure` or edit ~/code/.dotfiles/.p10k.zsh.
 [[ ! -f ~/code/.dotfiles/.p10k.zsh ]] || source ~/code/.dotfiles/.p10k.zsh
 
+# AWS CLI to Path
+export PATH=/usr/local/bin/aws:$PATH
+
+### gcloud & gsutil CLI
+# Which python version should the gcloud cli use 
+export CLOUDSDK_PYTHON=$(pyenv which python)
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/oliver/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/oliver/google-cloud-sdk/path.zsh.inc'; fi
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/oliver/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/oliver/google-cloud-sdk/completion.zsh.inc'; fi
