@@ -5,9 +5,10 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 ITEM_DIR="$CONFIG_DIR/items"
 
 bracket_defaults=(
-  background.color=$(getcolor zaitra_green 30)  
+  background.color=$(getcolor white 5)  
+  background.height=26
+  background.clip=1
   background.corner_radius=30  
-  background.height=27
   # background.drawing=on
 )
 
@@ -15,7 +16,6 @@ bracket_defaults=(
 bar_default=(
   height=35
   color=$BAR_COLOR
-  border_width=1
   border_color=$TRANSPARENT
   shadow=off
   position=top
@@ -25,7 +25,7 @@ bar_default=(
   padding_right=8
   topmost=window
   blur_radius=32
-  # margin=5
+  # margin=15
   # corner_radius=12
 )
 
@@ -40,10 +40,10 @@ default=(
   label.font="SF Pro:Bold:14.0"
   icon.color=$WHITE
   label.color=$WHITE
-  icon.padding_left=4
+  icon.padding_left=5
   icon.padding_right=4
   label.padding_left=4
-  label.padding_right=4
+  label.padding_right=5
   # border_width=2
 )
 sketchybar --default "${default[@]}"
@@ -65,8 +65,8 @@ sketchybar --add item window_watcher right \
 # source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/aerospace_spaces.sh"
 source "$ITEM_DIR/front_app.sh"
-# sketchybar --add bracket spaces space_separator front_app space.1 \
-#             --set spaces "${bracket_defaults[@]}" \
+sketchybar --add bracket spaces space_separator front_app space.1 \
+            --set spaces "${bracket_defaults[@]}" \
 
 ##### Adding Right Items #####
 source "$ITEM_DIR/calendar.sh"
@@ -76,7 +76,12 @@ source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/input_source.sh"
 
 # sketchybar --add bracket status battery volume calendar wifi input_source \
-#            --set status "${bracket_defaults[@]}" \
+#            --set status background.color=$(getcolor earth_blue 40) \
+#                         background.height=26 \
+#                         background.corner_radius=30 \
+#                         background.border_width=1 \
+#                         background.border_color=$(getcolor white 20)
+
 
 # Finishing the setup
 sketchybar --hotload on

@@ -9,16 +9,18 @@ source "$CONFIG_DIR/colors.sh" # Loads all defined colors
 FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused | head -n 1)
 CURRENT_WORKSPACE=${NAME#*.}
 
+# if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
 if [ "$CURRENT_WORKSPACE" = "$FOCUSED_WORKSPACE" ]; then
   sketchybar --set $NAME background.drawing=on \
                        background.height=20 \
                        background.color=$ITEM_BG_COLOR \
-                       label.color=$ACCENT_COLOR \
-                       icon.color=$ACCENT_COLOR
+                       label.color=$(getcolor white) \
+                       icon.color=$(getcolor white) \
+                       background.clip=1
 else
   sketchybar --set $NAME background.drawing=off \
-                       background.height=20 \
-                       background.color=$(getcolor zaitra_green 10) \
-                       label.color=$ALT_TEXT_COLOR \
-                       icon.color=$ALT_TEXT_COLOR 
+                       label.color=$(getcolor black) \
+                       icon.color=$(getcolor black) \
+                       background.color=$(getcolor white 50) \
+                       background.height=20
 fi

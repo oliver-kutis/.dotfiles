@@ -21,6 +21,7 @@ CATPUCCIN=(
   white "#cdd6f4"
   true_white "#ffffff"
   zaitra_green "#1ED760"
+  earth_blue "#2767E6"
 )
 
 
@@ -60,11 +61,11 @@ PERCENT2HEX() {
 }
 
 export ALT_TEXT_COLOR=$(getcolor zaitra_green)
-export TEXT_COLOR=$(getcolor white)
-export BAR_COLOR=$(getcolor trueblack 50)
+export TEXT_COLOR=$(getcolor true_white)
+export BAR_COLOR=$(getcolor black 20)
 # export BAR_COLOR=$(getcolor grey 50)
 # export ITEM_BG_COLOR=$(getcolor blue)
-export ITEM_BG_COLOR=$(getcolor zaitra_green)
+export ITEM_BG_COLOR=$(getcolor earth_blue 75)
 export GROUP_BG_COLOR=$(getcolor zaitra_green 30)
 export ACCENT_COLOR=$(getcolor trueblack)
 export HIGHLIGHT=$(getcolor red)

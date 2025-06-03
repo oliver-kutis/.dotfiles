@@ -6,18 +6,18 @@ for monitor in $(aerospace list-monitors --format "%{monitor-id}"); do
   # Get the display ID for this monitor
   display_id=$(aerospace list-monitors --format "%{monitor-appkit-nsscreen-screens-id}" | grep -n "^$monitor$" | cut -d: -f1)
   
-  # Create a separator for this monitor's spaces
-  sketchybar --add item spaces.${monitor}.separator left \
-             --set spaces.${monitor}.separator \
-                  label="${display_id}" \
-                  label.color=$ALT_TEXT_COLOR \
-                  padding_right=5 \
-                  padding_left=5 \
-                  icon="􀈉" \
-                  icon.color=$ALT_TEXT_COLOR \
-                  icon.drawing=on \
-                  drawing=on \
-                  display="${display_id}"
+  # # Create a separator for this monitor's spaces
+  # sketchybar --add item spaces.${monitor}.separator left \
+  #            --set spaces.${monitor}.separator \
+  #                 label="${display_id}" \
+  #                 label.color=$ALT_TEXT_COLOR \
+  #                 padding_right=20 \
+  #                 padding_left=5 \
+  #                 icon="􀈉" \
+  #                 icon.color=$ALT_TEXT_COLOR \
+  #                 icon.drawing=on \
+  #                 drawing=on \
+  #                 display="${display_id}"
   
   
   # Add workspaces for this monitor
@@ -42,8 +42,8 @@ done
 # Add space separator that shows app icons
 sketchybar --add item space_separator left \
            --subscribe space_separator aerospace_workspace_change \
-           --set space_separator icon="􁀘" \
-                                icon.color=$ALT_TEXT_COLOR \
+           --set space_separator icon="􀆊" \
+                                icon.color=$(getcolor black) \
                                 icon.padding_left=3 \
                                 label.drawing=off \
                                 background.drawing=off \

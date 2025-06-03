@@ -11,7 +11,7 @@ if [ "$PERCENTAGE" = "" ]; then
 fi
 
 case ${PERCENTAGE} in
-  9[0-9]|100) ICON="􀛨" ICON_COLOR=$(getcolor zaitra_green)
+  9[0-9]|100) ICON="􀛨" ICON_COLOR=$(getcolor earth_blue)
   ;;
 [6-8][0-9]) ICON="􀺸" ICON_COLOR=$(getcolor zaitra_green 90)
   ;;
