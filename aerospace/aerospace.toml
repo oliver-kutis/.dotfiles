@@ -92,6 +92,9 @@ run = "move-node-to-workspace C"
 if.app-id = "com.todesktop.230313mzl4w4u92"
 run = "move-node-to-workspace C"
 [[on-window-detected]]
+if.app-id = "dev.zed.Zed"
+run = "move-node-to-workspace C"
+[[on-window-detected]]
 if.app-id = "com.apple.finder"
 run = "move-node-to-workspace F"
 [[on-window-detected]]
@@ -102,6 +105,9 @@ if.app-id = "com.apple.Safari"
 run = "move-node-to-workspace S"
 [[on-window-detected]]
 if.app-id = "com.google.Chrome"
+run = "move-node-to-workspace B"
+[[on-window-detected]]
+if.app-id = "com.brave.Browser"
 run = "move-node-to-workspace B"
 [[on-window-detected]]
 if.app-id = "com.apple.MobileSMS"
