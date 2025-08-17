@@ -1,0 +1,130 @@
+-- Alternative: Enhanced statusline with buffer/tab information
+-- This works alongside your existing mini.statusline
+
+return {
+  'nvim-lualine/lualine.nvim',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  event = 'VeryLazy',
+  opts = {
+    options = {
+      theme = 'auto',
+      globalstatus = true,
+      disabled_filetypes = { statusline = { 'dashboard', 'alpha', 'starter' } },
+    },
+    sections = {
+      lualine_a = { 'mode' },
+      lualine_b = { 'branch' },
+      lualine_c = {
+        {
+          'diagnostics',
+          symbols = {
+            error = ' ',
+            warn = ' ',
+            info = ' ',
+            hint = ' ',
+          },
+        },
+        { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 } },
+        { 'filename', path = 1, symbols = { modified = '  ', readonly = '', unnamed = '' } },
+      },
+      lualine_x = {
+        {
+          function()
+            return require('noice').api.status.command.get()
+          end,
+          cond = function()
+            return package.loaded['noice'] and require('noice').api.status.command.has()
+          end,
+          color = function()
+            return { fg = Snacks.util.color 'Statement' }
+          end,
+        },
+        {
+          function()
+            return require('noice').api.status.mode.get()
+          end,
+          cond = function()
+            return package.loaded['noice'] and require('noice').api.status.mode.has()
+          end,
+          color = function()
+            return { fg = Snacks.util.color 'Constant' }
+          end,
+        },
+        {
+          function()
+            return '  ' .. require('dap').status()
+          end,
+          cond = function()
+            return package.loaded['dap'] and require('dap').status() ~= ''
+          end,
+          color = function()
+            return { fg = Snacks.util.color 'Debug' }
+          end,
+        },
+        {
+          require('lazy.status').updates,
+          cond = require('lazy.status').has_updates,
+          color = function()
+            return { fg = Snacks.util.color 'Special' }
+          end,
+        },
+        {
+          'diff',
+          symbols = {
+            added = ' ',
+            modified = ' ',
+            removed = ' ',
+          },
+          source = function()
+            local gitsigns = vim.b.gitsigns_status_dict
+            if gitsigns then
+              return {
+                added = gitsigns.added,
+                modified = gitsigns.changed,
+                removed = gitsigns.removed,
+              }
+            end
+          end,
+        },
+      },
+      lualine_y = {
+        { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
+        { 'location', padding = { left = 0, right = 1 } },
+      },
+      lualine_z = {
+        function()
+          return ' ' .. os.date '%R'
+        end,
+      },
+    },
+    -- Add buffer/tab info to tabline
+    tabline = {
+      lualine_a = {
+        {
+          'buffers',
+          show_filename_only = true,
+          hide_filename_extension = false,
+          show_modified_status = true,
+          mode = 0, -- 0: Shows buffer name
+          max_length = vim.o.columns * 2 / 3,
+          symbols = {
+            modified = ' ●',
+            alternate_file = '#',
+            directory = '',
+          },
+        },
+      },
+      lualine_z = {
+        {
+          'tabs',
+          max_length = vim.o.columns / 3,
+          mode = 0,
+          symbols = {
+            modified = ' ●',
+          },
+        },
+      },
+    },
+    extensions = { 'neo-tree', 'lazy' },
+  },
+}
