@@ -27,7 +27,8 @@ size = 13.5
 
 [cursor] 
 style.shape = "Beam"
-vi_mode_style.shape = "Beam"
+vi_mode_style.shape = "Block"
+# vi_mode_style.shape = None
 thickness = 0.3
 
 [keyboard]

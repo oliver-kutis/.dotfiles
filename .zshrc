@@ -1,5 +1,6 @@
 export HOMEBREW_NO_AUTO_UDPATE=1 # Disable auto-update for homebrew
 export ZAITRA_DATA_PATH="$HOME/data/zaitra"
+export DOTFS="$HOME/code/.dotfiles"
 
 # <<< 
 # >>> Powerlevel10k and other prompt configurations
@@ -43,6 +44,7 @@ bindkey "\u0015" kill-whole-line
 
 # ---- Eza (better ls) -----
 alias ls="eza --icons=always"
+alias ls="eza"
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ---- Zoxide (better cd) ----
