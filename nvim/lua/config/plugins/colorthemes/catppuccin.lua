@@ -40,9 +40,35 @@ return {
 			},
 			custom_highlights = function(colors)
 				return {
-					-- Floating window styling
+					-- Enhanced floating window styling
 					NormalFloat = { bg = colors.mantle },
 					FloatBorder = { bg = colors.mantle, fg = colors.blue },
+					FloatTitle = { bg = colors.mantle, fg = colors.peach, style = { 'bold' } },
+
+					-- LSP Hover window specific styling
+					LspHover = { bg = colors.base, fg = colors.text },
+					LspHoverBorder = { bg = colors.base, fg = colors.sapphire },
+
+					-- Markdown styling in hover windows
+					-- Headings
+					['@markup.heading.1'] = { fg = colors.red, style = { 'bold' } },
+					['@markup.heading.2'] = { fg = colors.peach, style = { 'bold' } },
+					['@markup.heading.3'] = { fg = colors.yellow, style = { 'bold' } },
+					['@markup.heading.4'] = { fg = colors.green, style = { 'bold' } },
+					['@markup.heading.5'] = { fg = colors.blue, style = { 'bold' } },
+					['@markup.heading.6'] = { fg = colors.mauve, style = { 'bold' } },
+
+					-- -- Code blocks
+					-- ['@markup.raw'] = { bg = colors.surface0, fg = colors.text },
+					-- ['@markup.raw.block'] = { bg = colors.surface0, fg = colors.text },
+
+					-- Emphasis
+					['@markup.strong'] = { fg = colors.red, style = { 'bold' } },
+					['@markup.italic'] = { fg = colors.blue, style = { 'italic' } },
+
+					-- Links
+					['@markup.link'] = { fg = colors.sapphire, style = { 'underline' } },
+					['@markup.link.url'] = { fg = colors.rosewater, style = { 'italic', 'underline' } },
 
 					-- Line numbers
 					-- LineNr = { fg = colors.surface1 },        -- All line numbers (default color)

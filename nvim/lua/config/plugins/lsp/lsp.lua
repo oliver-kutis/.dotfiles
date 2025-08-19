@@ -176,16 +176,18 @@ return {
 			underline = { severity = vim.diagnostic.severity.ERROR },
 			signs = vim.g.have_nerd_font and {
 				text = {
-					[vim.diagnostic.severity.ERROR] = '󰅚 ',
-					[vim.diagnostic.severity.WARN] = '󰀪 ',
-					[vim.diagnostic.severity.INFO] = '󰋽 ',
-					[vim.diagnostic.severity.HINT] = '󰌶 ',
+					[vim.diagnostic.severity.ERROR] = '●',
+					[vim.diagnostic.severity.WARN] = '●',
+					[vim.diagnostic.severity.INFO] = '●',
+					[vim.diagnostic.severity.HINT] = '●',
 				},
 			} or {},
 			virtual_text = {
 				prefix = '●',
+				current_line = true,
 				source = 'if_many',
 				spacing = 2,
+				-- Custom format
 				format = function(diagnostic)
 					local code = diagnostic.code and string.format('[%s]', diagnostic.code) or ''
 					local diagnostic_message = {
@@ -196,69 +198,9 @@ return {
 					}
 					return string.format('%s: %s', code, diagnostic_message[diagnostic.severity])
 				end,
+				-- Filter to prioritize Pyright diagnostics over other sources
 			},
 		}
-
-		-- Function to show only the closest diagnostic to cursor
-		local function show_closest_diagnostic()
-			local bufnr = vim.api.nvim_get_current_buf()
-			local line = vim.api.nvim_win_get_cursor(0)[1] - 1
-			local col = vim.api.nvim_win_get_cursor(0)[2]
-
-			local diagnostics = vim.diagnostic.get(bufnr, { lnum = line })
-			if #diagnostics == 0 then
-				return
-			end
-
-			-- Find closest diagnostic by column distance
-			local closest = diagnostics[1]
-			local min_distance = math.abs(col - closest.col)
-
-			for _, diag in ipairs(diagnostics) do
-				local distance = math.abs(col - diag.col)
-				if distance < min_distance then
-					closest = diag
-					min_distance = distance
-				end
-			end
-
-			-- Show only the closest diagnostic in virtual text
-			vim.diagnostic.config {
-				virtual_text = {
-					prefix = '●',
-					source = 'if_many',
-					spacing = 2,
-					format = function(diagnostic)
-						if diagnostic.lnum == closest.lnum and diagnostic.col == closest.col then
-							local code = diagnostic.code and
-							string.format('[%s]', diagnostic.code) or ''
-							return string.format('%s: %s', code, diagnostic.message)
-						end
-						return ''
-					end,
-				},
-			}
-		end
-
-		-- Option: Automatically update when cursor moves (uncomment to enable)
-		vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-			callback = show_closest_diagnostic,
-		})
-
-		-- Configure LSP hover and signature help appearance
-		vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-			border = 'rounded',
-			max_width = 80,
-			max_height = 20,
-			padding = 2,
-		})
-
-		vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-			border = 'rounded',
-			max_width = 80,
-			max_height = 15,
-			padding = 2,
-		})
 
 		-- LSP servers and clients are able to communicate to each other what features they support.
 		--  By default, Neovim doesn't support everything that is in the LSP specification.
@@ -284,7 +226,8 @@ return {
 					python = {
 						analysis = {
 							typeCheckingMode = 'basic',
-							diagnosticMode = 'openFilesOnly',
+							-- diagnosticMode = 'openFilesOnly',
+							diagnosticMode = 'off',
 							autoSearchPaths = true,
 							useLibraryCodeForTypes = true,
 							indexing = true,
