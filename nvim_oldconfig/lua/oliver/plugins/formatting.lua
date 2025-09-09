@@ -20,7 +20,7 @@ return {
 				liquid = { "prettier" },
 				lua = { "stylua" },
 				-- python = { "isort", "black" },
-				python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+				python = { "ruff_fix", "ruff_format" },
 				terraform = { "terraform_fmt" },
 			},
 			format_on_save = {
@@ -32,6 +32,10 @@ return {
 
 		conform.formatters.ruff = {
 			prepend_args = { "--extend-select", "I", "--line-length", "79" },
+		}
+
+		conform.formatters.ruff_fix = {
+			prepend_args = { "--ignore", "F401", "--extend-ignore", "F401" },
 		}
 
 		vim.keymap.set({ "n", "v" }, "<leader>mp", function()

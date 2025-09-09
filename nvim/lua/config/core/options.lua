@@ -6,11 +6,15 @@ vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
+vim.o.termguicolors = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
+
+-- Do not wrap the lines
+vim.o.wrap = false
 
 -- Make line numbers default
 vim.o.number = true
@@ -29,7 +33,7 @@ vim.o.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-	vim.o.clipboard = 'unnamedplus'
+  vim.o.clipboard = 'unnamedplus'
 end)
 
 -- Start insert mode on the indent level
@@ -68,9 +72,9 @@ vim.o.splitbelow = true
 --   and `:help lua-options-guide`
 vim.o.list = true
 vim.opt.listchars = {
-	tab = '  ',
-	trail = '·',
-	nbsp = '␣',
+  tab = '  ',
+  trail = '·',
+  nbsp = '␣',
 }
 
 -- Preview substitutions live, as you type!

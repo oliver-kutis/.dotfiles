@@ -15,20 +15,20 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move half the page UP and cent
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move half the page DOWN and center cursor on the screen' })
 
 -- Move selected lines up and down
-vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = 'Move selected lines below' })
-vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = 'Move selected lines above' })
+vim.keymap.set('v', '<M-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = 'Move selected lines below' })
+vim.keymap.set('v', '<M-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = 'Move selected lines above' })
 
 -- Move current line up and down
-vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { noremap = true, silent = true })
-vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { noremap = true, silent = true })
+vim.keymap.set('n', '<M-j>', ':m .+1<CR>==', { noremap = true, silent = true })
+vim.keymap.set('n', '<M-k>', ':m .-2<CR>==', { noremap = true, silent = true })
 
 -- Duplicate selected lines up and down
-vim.keymap.set('v', '<A-S-j>', "y'<P", { noremap = true, silent = true })
-vim.keymap.set('v', '<A-S-k>', "y'<P", { noremap = true, silent = true })
+vim.keymap.set('v', '<M-S-j>', "y'<P", { noremap = true, silent = true })
+vim.keymap.set('v', '<M-S-k>', "y'<P", { noremap = true, silent = true })
 
 -- Duplicate current line up and down
-vim.keymap.set('n', '<A-S-j>', ':t.<CR>', { noremap = true, silent = true, desc = 'Duplicate line below' })
-vim.keymap.set('n', '<A-S-k>', ':t-1<CR>', { noremap = true, silent = true, desc = 'Duplicate line above' })
+vim.keymap.set('n', '<M-S-j>', ':t.<CR>', { noremap = true, silent = true, desc = 'Duplicate line below' })
+vim.keymap.set('n', '<M-S-k>', ':t-1<CR>', { noremap = true, silent = true, desc = 'Duplicate line above' })
 
 -- Go to normal mode by typing "jk"
 vim.keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode with jk' })

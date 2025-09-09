@@ -15,7 +15,7 @@ after-login-command = []
 # so it won't be run twice on AeroSpace restart
 after-startup-command = [
     'exec-and-forget brew services start sketchybar',
-    'exec-and-forget brew services start borders',
+    'exec-and-forget brew services start borders active_color=0xff474747 width=2.0',
     # 'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
 ]
 
@@ -73,7 +73,7 @@ preset = 'qwerty'
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 10
+inner.horizontal = 7
 inner.vertical = 10
 outer.left = 10
 outer.bottom = 10
@@ -87,7 +87,7 @@ outer.right = 10
 # Fallback value (if you omit the key): mode.main.binding = {}
 [[on-window-detected]]
 if.app-id = "com.microsoft.VSCode"
-run = "move-node-to-workspace C"
+run =  "move-node-to-workspace C"
 [[on-window-detected]]
 if.app-id = "com.todesktop.230313mzl4w4u92"
 run = "move-node-to-workspace C"
@@ -114,6 +114,9 @@ if.app-id = "com.apple.MobileSMS"
 run = "move-node-to-workspace D"
 [[on-window-detected]]
 if.app-id = "com.spotify.client"
+run = "move-node-to-workspace D"
+[[on-window-detected]]
+if.app-id = "com.facebook.archon"
 run = "move-node-to-workspace D"
 [[on-window-detected]]
 if.app-id = "Mattermost.Desktop"
@@ -185,22 +188,22 @@ alt-equal = 'resize smart +50'
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
-alt-3 = 'workspace 3'
-alt-b = 'workspace B' # browser
-alt-c = 'workspace C' # vscode, cursor
-alt-d = 'workspace D' # spotify
-alt-f = 'workspace F' # finder
-alt-g = 'workspace G' # gpt
-alt-m = 'workspace M' # mattermost
-alt-n = 'workspace N' # notion
-alt-s = 'workspace S' # safari 
-alt-t = 'workspace T' # terminal
+# alt-3 = 'workspace 3'
+alt-b = ['exec-and-forget open -a "Brave Browser".app', 'workspace B' ] # browser
+alt-c = ['exec-and-forget open -a "Visual Studio Code".app', 'workspace C'] # vscode, cursor
+alt-d = ['exec-and-forget open -a Spotify.app', 'exec-and-forget open -a Messages.app', 'workspace D'] # spotify
+alt-f = ['exec-and-forget open -a Finder.app', 'workspace F'] # finder
+alt-g = ['exec-and-forget open -a "ChatGPT".app', 'workspace G'] # gpt
+alt-m = ['exec-and-forget open -a Mattermost.app', 'workspace M'] # mattermost
+alt-n = [ 'exec-and-forget open -a Notion.app', 'workspace N' ] # notion
+alt-s = [ 'exec-and-forget open -a Safari.app', 'workspace S' ] # safari 
+alt-t = ['exec-and-forget open -a Alacritty.app', 'workspace T' ] # terminal
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
+# alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-b = 'move-node-to-workspace B' # browser
 alt-shift-c = 'move-node-to-workspace C' # code
 alt-shift-f = 'move-node-to-workspace F' # finder
@@ -255,7 +258,7 @@ N = ['^built-in retina display$', 'dell', 'samsung']
 T = ['^built-in retina display$', 'dell', 'samsung']
 # External monitor gets priority
 2 = ['dell', 'samsung', '^built-in retina display$']
-3 = ['dell', 'samsung', '^built-in retina display$']
+# 3 = ['dell', 'samsung', '^built-in retina display$']
 B = ['dell', 'samsung', '^built-in retina display$']
 C = ['dell', 'samsung', '^built-in retina display$']
 S = ['dell', 'samsung', '^built-in retina display$']

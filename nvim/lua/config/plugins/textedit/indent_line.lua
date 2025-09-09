@@ -1,11 +1,12 @@
 return {
 	{ -- Add indentation guides even on blank lines
-		"lukas-reineke/indent-blankline.nvim",
+		'lukas-reineke/indent-blankline.nvim',
 		-- Enable `lukas-reineke/indent-blankline.nvim`
 		-- See `:help ibl`
-		main = "ibl",
+		main = 'ibl',
 		opts = {
-			scope = { enabled = true },
+			indent = { char = '┆' },
+			scope = { enabled = true, char = '┆' },
 			-- indent = { char = "", highlight = { "CursorColumn", "Whitespace" } },
 		},
 	},

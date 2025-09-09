@@ -2,6 +2,34 @@ export HOMEBREW_NO_AUTO_UDPATE=1 # Disable auto-update for homebrew
 export ZAITRA_DATA_PATH="$HOME/data/zaitra"
 export DOTFS="$HOME/code/.dotfiles"
 
+# Automatically activate .venv on entering a directory and deactivate when leaving
+function auto_source_venv() {
+    # If we already have a venv active, but it's not under the current path, deactivate it
+    if [ -n "$VIRTUAL_ENV" ] && [[ "$PWD" != "$VIRTUAL_ENV"* ]]; then
+        deactivate 2>/dev/null
+        echo "Deactivated virtual environment"
+    fi
+
+    # Activate new venv only if none is active
+    if [ -z "$VIRTUAL_ENV" ]; then
+        local dir=$PWD
+        while [ "$dir" != "/" ]; do
+            if [ -d "$dir/.venv" ]; then
+                if [ -f "$dir/.venv/bin/activate" ]; then
+                    source "$dir/.venv/bin/activate"
+                    echo "Activated virtual environment from $dir/.venv"
+                fi
+                return
+            fi
+            dir=$(dirname "$dir")
+        done
+    fi
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd auto_source_venv
+auto_source_venv
+
 # <<< 
 # >>> Powerlevel10k and other prompt configurations
 # <<<
