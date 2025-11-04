@@ -78,8 +78,8 @@ inner.vertical = 10
 outer.left = 10
 outer.bottom = 10
 # Increased top gap to accommodate sketchybar height (35px) plus a bit of padding
-# outer.top = [{ monitor."built-in" = 10 }, { monitor.main = 42 }, 10]
-outer.top = 10
+# outer.top = [{ monitor."built-in" = 10 }, { monitor.main = 10 }, 10]
+outer.top = 8
 outer.right = 10
 
 # 'main' binding mode declaration
@@ -118,6 +118,9 @@ if.app-id = "com.spotify.client"
 run = "move-node-to-workspace D"
 [[on-window-detected]]
 if.app-id = "com.facebook.archon"
+run = "move-node-to-workspace D"
+[[on-window-detected]]
+if.app-id = "com.apple.mail"
 run = "move-node-to-workspace D"
 [[on-window-detected]]
 if.app-id = "Mattermost.Desktop"
@@ -196,7 +199,7 @@ alt-d = ['exec-and-forget open -a Spotify.app', 'exec-and-forget open -a Message
 alt-f = ['exec-and-forget open -a Finder.app', 'workspace F'] # finder
 alt-g = ['exec-and-forget open -a "ChatGPT".app', 'workspace G'] # gpt
 alt-m = ['exec-and-forget open -a Mattermost.app', 'workspace M'] # mattermost
-alt-n = [ 'exec-and-forget open -a Notion.app', 'exec-and-forget open -a "Notion Calendar".app' , 'workspace N' ] # notion
+alt-n = ['exec-and-forget open -a "Notion Calendar".app' , 'workspace N' ] # notion
 alt-s = [ 'exec-and-forget open -a Safari.app', 'workspace S' ] # safari 
 alt-t = ['exec-and-forget open -a Alacritty.app', 'workspace T' ] # terminal
 

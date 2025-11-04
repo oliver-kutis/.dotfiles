@@ -24,9 +24,7 @@ require("lazy").setup({
 	{ import = "config.plugins.colorthemes" },
 	{ import = "config.plugins.version_control" },
 	{ import = "config.plugins.terminal" },
-	{ import = "config.plugins.ai" },
-	-- Single files
-	{ import = "config.plugins.neo-tree" },
+	-- { import = "config.plugins.ai" },
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the

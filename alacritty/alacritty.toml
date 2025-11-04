@@ -1,5 +1,6 @@
 general.import = [
-    "~/.config/alacritty/themes/themes/catppuccin_mocha.toml"
+    # "~/.config/alacritty/themes/themes/catppuccin_mocha.toml"
+    "~/.config/alacritty/themes/themes/kimbie_dark.toml"
 ]
 
 [env]
@@ -16,8 +17,8 @@ dimensions.lines = 40
 # Terminal window without buttons
 decorations = "Buttonless"
 
-opacity = 0.6
-# blur = true
+opacity = 0.9
+blur = false
 
 option_as_alt = "Both"
 
@@ -30,6 +31,35 @@ style.shape = "Beam"
 vi_mode_style.shape = "Block"
 # vi_mode_style.shape = None
 thickness = 0.3
+
+[colors.primary]
+  # background = "0x1c1c1c"
+  foreground = "0xe0e0d0"  # brighter than 0xc5c8c6 colors.text = "CellForeground"
+
+[colors.normal]
+black   = "#221a0f"
+red     = "#e08a6b"  # slightly brighter
+green   = "#a6c47a"  # stronger, more visible green
+yellow  = "#f0c28e"  # brighter yellow
+blue    = "#749ce0"
+magenta = "#d09bea"
+cyan    = "#7ed2c8"
+white   = "#f0d1a3"
+
+[colors.bright]
+black   = "#a4916b"
+red     = "#e08a6b"
+green   = "#9caf7e"
+yellow  = "#f0c28e"
+blue    = "#749ce0"
+magenta = "#d09bea"
+cyan    = "#7ed2c8"
+white   = "#fff0c0"  # brighter than #f2cca8
+
+[colors.cursor]
+text = '#1E1E2E'
+# cursor = '#D9D9D9'
+cursor = "#E8C07D"
 
 [keyboard]
 # Navigation
