@@ -1,20 +1,46 @@
 return {
 	"nvim-zh/colorful-winsep.nvim",
 	config = function()
-		require("colorful-winsep").setup({
+		local colorful_winsep = require("colorful-winsep")
+
+		-- 1️⃣ Regular setup
+		colorful_winsep.setup({
 			border = "bold",
-			-- highlight = "CursorLineNr", -- or your choice of highlight group
-			highlight = "#d7a65f", -- same as tmux active pane
+			highlight = "#d7a65f",
 			excluded_ft = { "packer", "TelescopePrompt", "mason", "neo-tree" },
 			excluded_bufs = { "Nvim_Tree_*", "NeoTree_*" },
 			no_exec_files = { "neo-tree", "DiffviewFiles", "DiffviewFilePanel" },
-			create_event = function()
-				-- This helps ignore Diffview and floating windows
-				local ok, win = pcall(vim.api.nvim_get_current_win)
-				if not ok or not vim.api.nvim_win_is_valid(win) then
-					return false
+		})
+
+		-- 2️⃣ Patch shift_move to silently ignore errors (optional, extra safety)
+		local ok, sep = pcall(require, "colorful-winsep.separator")
+		if ok and sep and sep.shift_move then
+			local orig_shift_move = sep.shift_move
+			sep.shift_move = function(...)
+				local ok2, result = pcall(orig_shift_move, ...)
+				if not ok2 then
+					return
 				end
-				return true
+				return result
+			end
+		end
+
+		-- 3️⃣ Disable winsep automatically in Neo-tree / Diffview buffers
+		vim.api.nvim_create_autocmd("BufEnter", {
+			pattern = { "neo-tree", "DiffviewFiles", "DiffviewFilePanel" },
+			callback = function()
+				pcall(function()
+					colorful_winsep.NvimSeparatorDel()
+				end)
+			end,
+		})
+
+		vim.api.nvim_create_autocmd("BufLeave", {
+			pattern = { "neo-tree", "DiffviewFiles", "DiffviewFilePanel" },
+			callback = function()
+				pcall(function()
+					colorful_winsep.NvimSeparatorNew()
+				end)
 			end,
 		})
 	end,

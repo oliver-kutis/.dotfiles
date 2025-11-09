@@ -3,10 +3,10 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim" },
 	cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFileHistory" },
 	keys = {
-		{ "<leader>gd", ":DiffviewOpen<CR>", desc = "Diffview open" },
-		{ "<leader>gq", ":DiffviewClose<CR>", desc = "Diffview close" },
+		{ "<leader>gd", ":DiffviewOpen<CR>",          desc = "Diffview open" },
+		{ "<leader>gq", ":DiffviewClose<CR>",         desc = "Diffview close" },
 		{ "<leader>gh", ":DiffviewFileHistory %<CR>", desc = "Diffview history (Current file)" },
-		{ "<leader>gH", ":DiffviewFileHistory<CR>", desc = "Diffview History (Repository)" },
+		{ "<leader>gH", ":DiffviewFileHistory<CR>",   desc = "Diffview History (Repository)" },
 	},
 	config = function()
 		local actions = require("diffview.actions")
@@ -46,5 +46,24 @@ return {
 				vim.cmd("Neotree close")
 			end,
 		})
+
+		-- Fix window separators when opening/closing Diffview
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "DiffviewViewOpened",
+			callback = function()
+				pcall(function()
+					require("colorful-winsep").NvimSeparatorDel()
+				end)
+			end,
+		})
+
+		-- vim.api.nvim_create_autocmd("User", {
+		-- 	pattern = "DiffviewViewClosed",
+		-- 	callback = function()
+		-- 		pcall(function()
+		-- 			require("colorful-winsep").NvimSeparatorCreate()
+		-- 		end)
+		-- 	end,
+		-- })
 	end,
 }
