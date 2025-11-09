@@ -13,8 +13,21 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right and stay in visual mode" 
 -- Normal mode: C-m → Visual Block mode
 vim.api.nvim_set_keymap("n", "<C-m>", "<C-v>", { noremap = true, silent = true })
 
--- Visual mode mapping: multi-edit all occurrences of selected text
-vim.keymap.set("v", "<leader>*", [[:<C-u>let @/ = '\V'.escape(@", '\')<CR>cgn]], { noremap = true, silent = true })
+-- Visual mode mapping: multi-edit all occurrences of selected text starting with the selection
+vim.keymap.set("v", "<leader>*", function()
+	-- Yank visual selection to register "z
+	vim.cmd('normal! "zy')
+
+	-- Escape for very nomagic search
+	local text = vim.fn.getreg("z")
+	local escaped = text:gsub("([\\^$.*+?()[%]{}|])", "\\%1")
+
+	-- Set search register
+	vim.fn.setreg("/", "\\V" .. escaped)
+
+	-- Exit visual mode and start cgn on the match
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>cgn", true, false, true), "n", false)
+end, { noremap = true, silent = true, desc = "Multi-edit visual selection" })
 
 -- Move Up / Down half-page
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move half the page UP and center cursor on the screen" })

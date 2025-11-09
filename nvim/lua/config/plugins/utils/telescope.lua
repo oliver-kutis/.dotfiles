@@ -23,6 +23,17 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		require("telescope").setup({
 			defaults = {
 				file_ignore_patterns = { "%.git/" },
+				layout_strategy = "horizontal", -- vertical layout to allow prompt on top
+				layout_config = {
+					prompt_position = "top", -- move search bar to top
+					-- preview_height = 0.7,
+					preview_width = 0.7,
+					preview_cutoff = 1,
+					width = 0.9,
+					height = 0.9,
+				},
+				sorting_strategy = "ascending",
+				path_display = { "truncate" },
 				mappings = {
 					i = {
 						["<C-h>"] = actions.select_horizontal,

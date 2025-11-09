@@ -17,7 +17,7 @@ dimensions.lines = 40
 # Terminal window without buttons
 decorations = "Buttonless"
 
-opacity = 0.9
+opacity = 0.92
 blur = false
 
 option_as_alt = "Both"
