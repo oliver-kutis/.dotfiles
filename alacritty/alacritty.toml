@@ -17,13 +17,14 @@ dimensions.lines = 40
 # Terminal window without buttons
 decorations = "Buttonless"
 
-opacity = 0.92
-blur = false
+opacity = 0.9
+blur = true
 
 option_as_alt = "Both"
 
 [font]
-normal.family = "MesloLGS Nerd Font Mono"
+# normal.family = "MesloLGS Nerd Font Mono"
+normal.family = "JetBrainsMono Nerd Font Mono"
 size = 13.5
 
 [cursor] 

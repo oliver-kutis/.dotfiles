@@ -7,9 +7,9 @@ options=(
 	width=4.0
 	hidpi=off
 	# active_color=$(getcolor orange)
-	active_color=$(getcolor black)
+	inactive_color=$(getcolor black)
 	# inactive_color=$(getcolor white 50)
-	inactive_color=$(getcolor white 50)
+	active_color=$(getcolor white 50)
 	# active_color=0xffe2e2e3
 	# inactive_color=0xff414550
 )

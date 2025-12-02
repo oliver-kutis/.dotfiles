@@ -13,8 +13,8 @@ return {
 	keys = {
 		-- Explorer (Filesystem)
 		{ "\\",         ":Neotree filesystem reveal left<CR>",  desc = "Explorer",   silent = true },
-		{ "<leader>ee", ":Neotree filesystem reveal left<CR>",  desc = "Explorer",   silent = true },
-		{ "<leader>ef", ":Neotree filesystem toggle float<CR>", desc = "Explorer",   silent = true },
+		-- { "<leader>ee", ":Neotree filesystem reveal left<CR>", desc = "Explorer", silent = true },
+		{ "<leader>ee", ":Neotree filesystem toggle float<CR>", desc = "Explorer",   silent = true },
 
 		-- Git Status (Floating)
 		{ "<leader>eg", ":Neotree git_status toggle float<CR>", desc = "Git Status", silent = true },
@@ -90,13 +90,12 @@ return {
 				hide_dotfiles = false,
 				hide_by_name = {
 					".github",
-					".DS_Store",
 				},
-				never_show = { ".git" },
+				never_show = { ".git", ".DS_Store", "__pycache__" },
 			},
 			follow_current_file = {
-				enabled = false,
-				leave_dirs_open = false,
+				enabled = true,
+				leave_dirs_open = true,
 			},
 			group_empty_dirs = false,
 			hijack_netrw_behavior = "open_default",
