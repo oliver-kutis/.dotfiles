@@ -7,7 +7,7 @@ return {
 		-- =========================
 		vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 		vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#2a2a25" })   -- dark sand tone
+		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#2a2a25" }) -- dark sand tone
 		vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#d7a65f", bg = "#2a2a25" }) -- spice/orange accent
 
 		-- Comments / syntax

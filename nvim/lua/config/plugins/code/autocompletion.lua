@@ -37,31 +37,40 @@ return {
 					},
 				},
 			},
-			{
-				"zbirenbaum/copilot-cmp",
-				dependencies = { "zbirenbaum/copilot.lua" },
-				config = function()
-					require("copilot_cmp").setup()
-				end,
-			},
+			-- {
+			-- 	"zbirenbaum/copilot-cmp",
+			-- 	dependencies = { "zbirenbaum/copilot.lua" },
+			-- 	config = function()
+			-- 		require("copilot_cmp").setup()
+			-- 	end,
+			-- },
 		},
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 
 			cmp.setup({
+				view = {
+					docs = {
+						auto_open = true,
+					},
+				},
+				completion = {
+					autocomplete = {
+						cmp.TriggerEvent.InsertEnter,
+						cmp.TriggerEvent.TextChanged,
+					},
+				},
 				window = {
 					documentation = cmp.config.window.bordered({
 						border = "rounded",
-						winhighlight =
-						"Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+						winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
 					}),
 					completion = cmp.config.window.bordered({
 						max_height = 10,
 						scrollbar = true,
 						border = "rounded",
-						winhighlight =
-						"Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+						winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
 					}),
 				},
 				snippet = {
@@ -95,11 +104,11 @@ return {
 					-- end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
-					{ name = "copilot",  group_index = 2,    max_item_count = 10 }, -- top 10 only
+					{ name = "copilot", group_index = 2 },
 					{ name = "nvim_lsp", max_item_count = 10 },
-					{ name = "luasnip",  max_item_count = 10 },
-					{ name = "buffer",   max_item_count = 10 },
-					{ name = "path",     max_item_count = 10 },
+					{ name = "luasnip", max_item_count = 10 },
+					{ name = "buffer", max_item_count = 10 },
+					{ name = "path", max_item_count = 10 },
 				}),
 				formatting = {
 					format = function(entry, vim_item)

@@ -79,13 +79,15 @@ outer.left = 10
 outer.bottom = 10
 # Increased top gap to accommodate sketchybar height (35px) plus a bit of padding
 # outer.top = [{ monitor."built-in" = 10 }, { monitor.main = 10 }, 10]
-outer.top = 8
+# outer.top = 30
 outer.right = 10
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
 # Fallback value (if you omit the key): mode.main.binding = {}
+
+# --- C ---
 [[on-window-detected]]
 if.app-id = "com.microsoft.VSCode"
 run =  "move-node-to-workspace C"
@@ -95,21 +97,25 @@ run = "move-node-to-workspace C"
 [[on-window-detected]]
 if.app-id = "dev.zed.Zed"
 run = "move-node-to-workspace C"
+# --- F ---
 [[on-window-detected]]
 if.app-id = "com.apple.finder"
 run = "move-node-to-workspace F"
 [[on-window-detected]]
 if.app-id = "com.xnview.XnView"
 run = "move-node-to-workspace F"
+# --- S ---
 [[on-window-detected]]
 if.app-id = "com.apple.Safari"
 run = "move-node-to-workspace S"
+# --- B ---
 [[on-window-detected]]
 if.app-id = "com.google.Chrome"
 run = "move-node-to-workspace B"
 [[on-window-detected]]
 if.app-id = "com.brave.Browser"
 run = "move-node-to-workspace B"
+# --- D ---
 [[on-window-detected]]
 if.app-id = "com.apple.MobileSMS"
 run = "move-node-to-workspace D"
@@ -123,22 +129,33 @@ run = "move-node-to-workspace D"
 if.app-id = "com.apple.mail"
 run = "move-node-to-workspace D"
 [[on-window-detected]]
+if.app-id = "com.apple.Safari.WebApp.0F66E73E-9B10-4006-A424-71F5A42A7FBB"
+run = "move-node-to-workspace D"
+# -- M ---
+[[on-window-detected]]
 if.app-id = "Mattermost.Desktop"
 run = "move-node-to-workspace M"
+# --- N ---
 [[on-window-detected]]
 if.app-id = "notion.id"
 run = "move-node-to-workspace N"
 [[on-window-detected]]
 if.app-id = "com.cron.electron"
 run = "move-node-to-workspace N"
+# --- T ---
 [[on-window-detected]]
 if.app-id = "org.alacritty"
 run = "move-node-to-workspace T"
+# --- G ---
 [[on-window-detected]]
 if.app-id = "com.openai.chat"
 run = "move-node-to-workspace G"
-[mode.main.binding]
+[[on-window-detected]]
+if.app-id = "com.apple.Safari.WebApp.47B060E9-2164-4D67-9070-8BD6143F6696"
+run = "move-node-to-workspace G"
 
+
+[mode.main.binding]
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -195,7 +212,7 @@ alt-2 = 'workspace 2'
 # alt-3 = 'workspace 3'
 alt-b = ['exec-and-forget open -a "Brave Browser".app', 'workspace B' ] # browser
 alt-c = ['exec-and-forget open -a "Visual Studio Code".app', 'workspace C'] # vscode, cursor
-alt-d = ['exec-and-forget open -a Messages.app', 'workspace D'] # imessage
+alt-d = ['exec-and-forget open -a Messages.app', 'workspace D'] # spotify
 alt-f = ['exec-and-forget open -a Finder.app', 'workspace F'] # finder
 alt-g = ['exec-and-forget open -a "ChatGPT".app', 'workspace G'] # gpt
 alt-m = ['exec-and-forget open -a Mattermost.app', 'workspace M'] # mattermost

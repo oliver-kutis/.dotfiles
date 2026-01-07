@@ -106,6 +106,73 @@ return {
 				map("<leader>e", vim.diagnostic.open_float, "Show Diagnostic [E]rror")
 				map("<leader>q", vim.diagnostic.setloclist, "Open Diagnostic [Q]uickfix list")
 
+				-- Toggle a diagnostic float for the current line (manual, no inline virtual text needed)
+				pcall(vim.keymap.del, "n", "<leader>td", { buffer = event.buf })
+				map("<leader>td", function()
+					local bufnr = event.buf
+					local existing = vim.b[bufnr].__diagnostic_float_winid
+
+					-- If we lost the stored winid (or it changed), try to discover any existing
+					-- diagnostic float window associated with this buffer.
+					if not (existing and vim.api.nvim_win_is_valid(existing)) then
+						for _, win in ipairs(vim.api.nvim_list_wins()) do
+							local ok, win_bufnr = pcall(vim.api.nvim_win_get_buf, win)
+							if ok and win_bufnr == bufnr then
+								local wvar = vim.w[win].__diagnostic_float_for_bufnr
+								if wvar == bufnr then
+									existing = win
+									break
+								end
+							end
+						end
+					end
+
+					-- Toggle off
+					if existing and vim.api.nvim_win_is_valid(existing) then
+						pcall(vim.api.nvim_win_close, existing, true)
+						vim.b[bufnr].__diagnostic_float_winid = nil
+						return
+					end
+
+					-- Toggle on (for the whole current line, not the exact column)
+					local line = vim.api.nvim_win_get_cursor(0)[1] - 1
+					if #vim.diagnostic.get(bufnr, { lnum = line }) == 0 then
+						return
+					end
+
+					local wins_before = {}
+					for _, win in ipairs(vim.api.nvim_list_wins()) do
+						wins_before[win] = true
+					end
+
+					local winid = vim.diagnostic.open_float(bufnr, {
+						focus = false,
+						scope = "line",
+						pos = { line, 0 },
+						border = "rounded",
+						source = "if_many",
+						close_events = { "InsertEnter", "BufHidden", "FocusLost" },
+					})
+
+					-- Some versions return nil; if so, discover the new float window.
+					if not (winid and vim.api.nvim_win_is_valid(winid)) then
+						for _, win in ipairs(vim.api.nvim_list_wins()) do
+							if not wins_before[win] then
+								local cfg = vim.api.nvim_win_get_config(win)
+								if cfg.relative ~= "" then
+									winid = win
+									break
+								end
+							end
+						end
+					end
+
+					if winid and vim.api.nvim_win_is_valid(winid) then
+						vim.b[bufnr].__diagnostic_float_winid = winid
+						vim.w[winid].__diagnostic_float_for_bufnr = bufnr
+					end
+				end, "Toggle Diagnostic Float")
+
 				-- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
 				---@param client vim.lsp.Client
 				---@param method vim.lsp.protocol.Method
@@ -189,23 +256,8 @@ return {
 					[vim.diagnostic.severity.HINT] = "●",
 				},
 			} or {},
-			virtual_text = {
-				prefix = "●",
-				current_line = true,
-				source = "if_many",
-				spacing = 2,
-				-- Custom format
-				format = function(diagnostic)
-					local code = diagnostic.code and string.format("[%s]", diagnostic.code) or ""
-					local diagnostic_message = {
-						[vim.diagnostic.severity.ERROR] = diagnostic.message,
-						[vim.diagnostic.severity.WARN] = diagnostic.message,
-						[vim.diagnostic.severity.INFO] = diagnostic.message,
-						[vim.diagnostic.severity.HINT] = diagnostic.message,
-					}
-					return string.format("%s: %s", code, diagnostic_message[diagnostic.severity])
-				end,
-			},
+			-- Inline diagnostics can't wrap; prefer a floating window via a keybind.
+			virtual_text = false,
 		})
 
 		-- LSP servers and clients are able to communicate to each other what features they support.

@@ -55,6 +55,9 @@ vim.o.smartcase = true
 -- Keep signcolumn on by default
 vim.o.signcolumn = "yes"
 
+-- Better completion UX (used by nvim-cmp)
+vim.o.completeopt = "menuone,noselect"
+
 -- Decrease update time
 vim.o.updatetime = 250
 
