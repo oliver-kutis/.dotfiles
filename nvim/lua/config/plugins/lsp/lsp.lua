@@ -78,6 +78,13 @@ return {
 				--  This is where a variable was first declared, or where a function is defined, etc.
 				--  To jump back, press <C-t>.
 				map("grd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+				-- Direct (non-Telescope) definition jump
+				map("grdd", vim.lsp.buf.definition, "[G]oto [D]efinition (Direct)")
+				-- Open definition in a new vertical split
+				map("grdv", function()
+					vim.cmd("vsplit")
+					vim.lsp.buf.definition()
+				end, "[G]oto [D]efinition (Vsplit)")
 
 				-- WARN: This is not Goto Definition, this is Goto Declaration.
 				--  For example, in C this would take you to the header.
@@ -105,10 +112,51 @@ return {
 				map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
 				map("<leader>e", vim.diagnostic.open_float, "Show Diagnostic [E]rror")
 				map("<leader>q", vim.diagnostic.setloclist, "Open Diagnostic [Q]uickfix list")
+				map("<leader>E", function()
+					vim.diagnostic.open_float({ scope = "buffer" })
+				end, "Show Buffer Diagnostics")
+				map("<leader>de", function()
+					local bufnr = event.buf
+					local line = vim.api.nvim_win_get_cursor(0)[1] - 1
+					local diagnostics = vim.diagnostic.get(bufnr, { lnum = line })
+					if #diagnostics == 0 then
+						return
+					end
 
+					-- Echo the highest-severity diagnostic on the line
+					table.sort(diagnostics, function(a, b)
+						return a.severity < b.severity
+					end)
+					vim.api.nvim_echo({ { diagnostics[1].message, "Normal" } }, false, {})
+				end, "Echo Line Diagnostic")
+				map("<leader>dc", function()
+					local bufnr = event.buf
+					local line = vim.api.nvim_win_get_cursor(0)[1] - 1
+					local col = vim.api.nvim_win_get_cursor(0)[2]
+					local diagnostics = vim.diagnostic.get(bufnr, { lnum = line })
+					if #diagnostics == 0 then
+						return
+					end
+
+					local closest = diagnostics[1]
+					local min_distance = math.abs(col - (closest.col or 0))
+					for _, diag in ipairs(diagnostics) do
+						local distance = math.abs(col - (diag.col or 0))
+						if distance < min_distance then
+							closest = diag
+							min_distance = distance
+						end
+					end
+
+					vim.diagnostic.open_float({
+						bufnr = bufnr,
+						pos = { closest.lnum, closest.col or 0 },
+						severity = closest.severity,
+					})
+				end, "Show Closest Diagnostic")
+				
 				-- Toggle a diagnostic float for the current line (manual, no inline virtual text needed)
-				pcall(vim.keymap.del, "n", "<leader>td", { buffer = event.buf })
-				map("<leader>td", function()
+				local function toggle_line_diagnostic_float()
 					local bufnr = event.buf
 					local existing = vim.b[bufnr].__diagnostic_float_winid
 
@@ -171,7 +219,11 @@ return {
 						vim.b[bufnr].__diagnostic_float_winid = winid
 						vim.w[winid].__diagnostic_float_for_bufnr = bufnr
 					end
-				end, "Toggle Diagnostic Float")
+				end
+
+				-- `gl`: toggle on/off when pressed repeatedly
+				pcall(vim.keymap.del, "n", "gl", { buffer = event.buf })
+				map("gl", toggle_line_diagnostic_float, "Toggle Line Diagnostics")
 
 				-- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
 				---@param client vim.lsp.Client

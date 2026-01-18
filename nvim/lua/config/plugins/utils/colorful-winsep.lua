@@ -6,7 +6,7 @@ return {
 		-- 1️⃣ Regular setup
 		colorful_winsep.setup({
 			border = "bold",
-			highlight = "#d7a65f",
+		highlight = "#8aadf4", -- Catppuccin blue (balanced blue)
 			excluded_ft = { "packer", "TelescopePrompt", "mason", "neo-tree" },
 			excluded_bufs = { "Nvim_Tree_*", "NeoTree_*" },
 			no_exec_files = { "neo-tree", "DiffviewFiles", "DiffviewFilePanel" },

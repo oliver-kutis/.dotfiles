@@ -10,6 +10,25 @@ vim.keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights
 vim.keymap.set('v', '<', '<gv', { desc = 'Indent left and stay in visual mode' })
 vim.keymap.set('v', '>', '>gv', { desc = 'Indent right and stay in visual mode' })
 
+-- Normal mode: C-m → Visual Block mode
+vim.api.nvim_set_keymap("n", "<C-m>", "<C-v>", { noremap = true, silent = true })
+
+-- Visual mode mapping: multi-edit all occurrences of selected text starting with the selection
+vim.keymap.set("v", "<leader>*", function()
+	-- Yank visual selection to register "z
+	vim.cmd('normal! "zy')
+
+	-- Escape for very nomagic search
+	local text = vim.fn.getreg("z")
+	local escaped = text:gsub("([\\^$.*+?()[%]{}|])", "\\%1")
+
+	-- Set search register
+	vim.fn.setreg("/", "\\V" .. escaped)
+
+	-- Exit visual mode and start cgn on the match
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>cgn", true, false, true), "n", false)
+end, { noremap = true, silent = true, desc = "Multi-edit visual selection" })
+
 -- Move Up / Down half-page
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move half the page UP and center cursor on the screen' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move half the page DOWN and center cursor on the screen' })
@@ -33,83 +52,17 @@ vim.keymap.set('n', '<A-S-k>', ':t-1<CR>', { noremap = true, silent = true, desc
 -- Go to normal mode by typing "jk"
 vim.keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode with jk' })
 
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
--- Enhanced diagnostic navigation and display
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show line diagnostics in floating window' })
-vim.keymap.set('n', '<leader>E', function()
-	vim.diagnostic.open_float({ scope = 'buffer' })
-end, { desc = 'Show all buffer diagnostics in floating window' })
-
--- Toggle virtual text on/off
-vim.keymap.set('n', '<leader>td', function()
-	local bufnr = vim.api.nvim_get_current_buf()
-	local winid = vim.b[bufnr].__diagnostic_float_winid
-	if winid and vim.api.nvim_win_is_valid(winid) then
-		pcall(vim.api.nvim_win_close, winid, true)
-		vim.b[bufnr].__diagnostic_float_winid = nil
-		return
-	end
-
-	local line = vim.api.nvim_win_get_cursor(0)[1] - 1
-	local diagnostics = vim.diagnostic.get(bufnr, { lnum = line })
-	if #diagnostics == 0 then
-		return
-	end
-
-	winid = vim.diagnostic.open_float(nil, {
-		focus = false,
-		scope = 'line',
-		pos = { line, 0 },
-		border = 'rounded',
-		source = 'if_many',
-		close_events = { 'CursorMoved', 'InsertEnter', 'BufHidden', 'FocusLost' },
-	})
-	vim.b[bufnr].__diagnostic_float_winid = winid
-end, { desc = 'Toggle diagnostic float (current line)' })
-
--- Show full diagnostic message in echo area (good for very long messages)
-vim.keymap.set('n', '<leader>de', function()
-	local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line('.') - 1 })
-	if #diagnostics > 0 then
-		vim.api.nvim_echo({{diagnostics[1].message, 'Normal'}}, false, {})
-	end
-end, { desc = 'Echo full diagnostic message' })
-
--- Show only closest diagnostic to cursor
-vim.keymap.set('n', '<leader>dc', function()
-	local bufnr = vim.api.nvim_get_current_buf()
-	local line = vim.api.nvim_win_get_cursor(0)[1] - 1
-	local col = vim.api.nvim_win_get_cursor(0)[2]
-	
-	local diagnostics = vim.diagnostic.get(bufnr, { lnum = line })
-	if #diagnostics == 0 then
-		print("No diagnostics on current line")
-		return
-	end
-	
-	-- Find closest diagnostic by column distance
-	local closest = diagnostics[1]
-	local min_distance = math.abs(col - closest.col)
-	
-	for _, diag in ipairs(diagnostics) do
-		local distance = math.abs(col - diag.col)
-		if distance < min_distance then
-			closest = diag
-			min_distance = distance
-		end
-	end
-	
-	-- Show the closest diagnostic in a float
-	vim.diagnostic.open_float({
-		bufnr = bufnr,
-		pos = { closest.lnum, closest.col },
-		severity = closest.severity,
-	})
-end, { desc = 'Show closest diagnostic to cursor' })
+-- Window management
+vim.keymap.set("n", "<leader>wv", "<cmd>vsplit<cr>", { desc = "[V]ertical split" })
+vim.keymap.set("n", "<leader>wh", "<cmd>split<cr>", { desc = "[H]orizontal split" })
+vim.keymap.set("n", "<leader>we", "<C-w>=", { desc = "[E]qualize splits" })
+vim.keymap.set("n", "<leader>wc", "<cmd>close<cr>", { desc = "[C]lose split" })
+vim.keymap.set("n", "<leader>wV", "<cmd>vnew<cr>", { desc = "[V]split New empty window" })
+vim.keymap.set("n", "<leader>wH", "<cmd>new<cr>", { desc = "[H]split New empty window" })
+vim.keymap.set("n", "<leader>wh", "<C-w>h<C-w>x", { desc = "Move window left" })
+vim.keymap.set("n", "<leader>wl", "<C-w>l<C-w>x", { desc = "Move window right" })
+vim.keymap.set("n", "<leader>wk", "<C-w>k<C-w>x", { desc = "Move window up" })
+vim.keymap.set("n", "<leader>wj", "<C-w>j<C-w>x", { desc = "Move window down" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -139,6 +92,7 @@ vim.keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = 'Close current t
 vim.keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = 'Go to next tab' }) --  go to next tab
 vim.keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = 'Go to previous tab' }) --  go to previous tab
 vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current buffer in new tab' }) --  move current buffer to new tab
+
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })

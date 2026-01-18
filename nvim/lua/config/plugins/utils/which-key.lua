@@ -49,13 +49,14 @@ return {
 			{ '<leader>h', group = 'Git [H]unk',                mode = { 'n', 'v' } },
 			{ '<leader>e', group = 'Neotree [E]xplorer' },
 			{ '<leader>b', group = 'Split [B]uffer Management ' },
-		}
+		{ '<leader>w', group = '[W]indow/Split Management' },
+	}
 
-		-- -- === Dynamically register Control keymaps ===
-		-- local ctrl_maps = {}
-		-- for _, map in ipairs(vim.api.nvim_get_keymap("n")) do
-		-- 	if map.lhs:match("^<C%-.") then
-		-- 		local key = map.lhs:match("^<C%-(.)")
+	-- -- === Dynamically register Control keymaps ===
+	-- local ctrl_maps = {}
+	-- for _, map in ipairs(vim.api.nvim_get_keymap("n")) do
+	-- 	if map.lhs:match("^<C%-.") then
+	-- 		local key = map.lhs:match("^<C%-(.)")
 		-- 		ctrl_maps[key] = { map.rhs or "", map.desc or ("Ctrl+" .. key) }
 		-- 	end
 		-- end
