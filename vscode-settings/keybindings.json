@@ -1,0 +1,260 @@
+// Place your key bindings in this file to override the defaults
+[
+    /*
+        === Vim remap ===
+    */
+    /*
+        === Navigation ===
+    */
+    // Notebook
+    {
+        "key": "ctrl+j",
+        "command": "notebook.cell.moveDown",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "notebook.cell.moveUp",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    // Workbench
+    {
+        "key": "space h",
+        "command": "workbench.action.navigateLeft",
+        "when": "!vim.active && !editorFocus && notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "cmd+down",
+        "command": "workbench.action.navigateDown",
+        "when": "!editorFocus"
+    },
+    {
+        "key": "cmd+up",
+        "command": "workbench.action.navigateUp",
+        "when": "!editorFocus"
+    },
+    {
+        "key": "cmd+right",
+        "command": "workbench.action.navigateRight",
+        "when": "!editorFocus"
+    },
+
+    // Copilot
+    {
+        "key": "cmd+shift+i",
+        "command": "chat.action.focus",
+        "when": "inputFocus && chatInputHasFocus"
+    },
+    {
+        "key": "cmd+ctrl+n",
+        "command": "workbench.action.chat.openInEditor",
+        // "when": "chatInputHasFocus && inputFocus"
+    },
+    // Toggle terminal panel
+    {
+        "key": "cmd+k t t",
+        "command": "workbench.action.terminal.toggleTerminal"
+    },
+    {
+        "key": "cmd+k t f",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminal.visible"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft",
+        "when": "!vim.active"
+    },
+    {
+        "key": "tab",
+        "command": "tab",
+        "when": "(vim.mode == 'Normal' || vim.mode == 'Visual') && editorTextFocus && !editorTabMovesFocus"
+    },
+    {
+        "key": "shift+tab",
+        "command": "outdent",
+        "when": "(vim.mode == 'Normal' || vim.mode == 'Visual') && editorTextFocus && !editorTabMovesFocus"
+    },
+    {
+        "key": "space .",
+        "command": "workbench.action.showAllEditors",
+        "when": "sideBarFocus && !inputFocus",
+        "description": "Show all editors (active tabs)"
+    },
+    {
+        "key": "space e e",
+        "command": "workbench.files.action.focusFilesExplorer",
+        "when": "!editorFocus && !inputFocus",
+        "description": "Toggle Explorer"
+    },
+    {
+        "key": "space e f",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "sideBarFocus && !inputFocus"
+    },
+    /*
+        === Coding ===
+    */
+    // hover control[
+    {
+        "key": "h",
+        "command": "editor.action.scrollLeftHover",
+        "when": "editorHoverFocused"
+    },
+    {
+        "key": "j",
+        "command": "editor.action.scrollDownHover",
+        "when": "editorHoverFocused"
+    },
+    {
+        "key": "k",
+        "command": "editor.action.scrollUpHover",
+        "when": "editorHoverFocused"
+    },
+    {
+        "key": "l",
+        "command": "editor.action.scrollRightHover",
+        "when": "editorHoverFocused"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "editor.action.pageUpHover",
+        "when": "editorHoverFocused"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.pageDownHover",
+        "when": "editorHoverFocused"
+    },
+    {
+        "key": "alt-j",
+        "command": "editor.action.moveLinesDownAction",
+        "when": "vim.mode != 'Insert' && editorTextFocus",
+        "description": "Move current line down"
+    },
+    {
+        "key": "alt-k",
+        "command": "editor.action.moveLinesUpAction",
+        "when": "vim.mode != 'Insert' && editorTextFocus",
+        "description": "Move current line up"
+    },
+    {
+        "key": "shift-alt-j",
+        "command": "editor.action.copyLinesDownAction",
+        "when": "vim.mode != 'Insert' && editorTextFocus",
+        "description": "Move current line down"
+    },
+    {
+        "key": "shift-alt-k",
+        "command": "editor.action.copyLinesUpAction",
+        "when": "vim.mode != 'Insert' && editorTextFocus",
+        "description": "Move current line up"
+    },
+    /*
+      === Explorer ===
+    */
+    {
+        "key": "e",
+        "command": "workbench.files.action.collapseExplorerFolders",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
+        "description": "Collapse all folders"
+    },
+    {
+        "key": "r",
+        "command": "renameFile",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
+        "description": "Rename file"
+    },
+    {
+        "key": "c",
+        "command": "filesExplorer.copy",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
+        "description": "Copy file"
+    },
+    {
+        "key": "p",
+        "command": "filesExplorer.paste",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
+        "description": "Paste file"
+    },
+    {
+        "key": "x",
+        "command": "filesExplorer.cut",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
+        "description": "Cut file"
+    },
+    {
+        "key": "d",
+        // "command": "filesExplorer.delete",
+        "command": "errorlens",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
+        "description": "Delete file"
+    },
+    {
+        "key": "a",
+        "command": "explorer.newFile",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
+        "description": "New file"
+    },
+    {
+        "key": "shift-a",
+        "command": "explorer.newFolder",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
+        "description": "New folder"
+    },
+    {
+        "key": "s v",
+        "command": "explorer.openToSide",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
+        "description": "Open file to the side (vertial split)"
+    },
+    {
+        "key": "s h",
+        "command": "runCommands",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
+        "description": "Open file below (horizontal split)",
+        "args": {
+            "commands": [
+                "workbench.action.splitEditorDown",
+                "explorer.openAndPassFocus",
+                "workbench.action.closeOtherEditors"
+            ]
+        }
+    },
+    {
+        "key": "g y",
+        "command": "copyFilePath",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+    },
+    {
+        "key": "y",
+        "command": "copyRelativeFilePath",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+    },
+    {
+        "key": "enter",
+        "command": "explorer.openAndPassFocus",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
+        "description": "Open file and pass focus"
+    },
+    {
+        "key": "ctrl+cmd+i",
+        "command": "workbench.action.chat.openAgent",
+        "when": "config.chat.agent.enabled && !chatSetupHidden"
+    },
+    {
+        "key": "shift+cmd+i",
+        "command": "-workbench.action.chat.openAgent",
+        "when": "config.chat.agent.enabled && !chatSetupHidden"
+    },
+    {
+        "key": "shift+cmd+i",
+        "command": "workbench.action.chat.open",
+        "when": "!chatSetupHidden"
+    },
+    {
+        "key": "ctrl+cmd+i",
+        "command": "-workbench.action.chat.open",
+        "when": "!chatSetupHidden"
+    }
+]

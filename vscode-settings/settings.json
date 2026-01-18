@@ -1,0 +1,440 @@
+{
+    /*
+        === Vim ===  
+    */
+    "vim.statusBarColorControl": false,  // true,
+    "vim.surround": true,
+    "vim.changeWordIncludesWhitespace": false,
+    // "vim.statusBarColors.commandlineinprogress": ["#007ACC", "#cdd6f4"],
+    // "vim.statusBarColors.surroundinputmode": ["#007ACC", "#cdd6f4"],
+    // "vim.statusBarColors.normal": ["#89b4fa", "#1e1e2e"],
+    // "vim.statusBarColors.insert": ["#94e2d5", "#1e1e2e"],
+    // "vim.statusBarColors.visual": ["#eba0ac", "#1e1e2e"],
+    // "vim.statusBarColors.visualline": ["#cba6f7", "#1e1e2e"],
+    // "vim.statusBarColors.visualblock": ["#f38ba8", "#1e1e2e"],
+    // "vim.statusBarColors.replace": ["#cdd6f4", "#1e1e2e"],
+    // "extensions.experimental.affinity": {
+    //     "vscodevim.vim": 1
+    // },
+    "whichkey.useFullWidthCharacters": true,
+    "vim.easymotion": true,
+    "vim.visualstar": true,
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false
+        // "<C-h>": false,
+        // "<C-j>": false,
+        // "<C-k>": false,
+        // "<C-l>": false,
+    },
+    "vim.insertModeKeyBindings": [
+        {
+            "after": ["<Esc>"],
+            "before": ["j", "k"]
+        }
+        // {
+        //     "before": [
+        //         "<shift>k",
+        //     ],
+        //     "commands": [
+        //         "editor.action.showHover"
+        //     ]
+        // }
+    ],
+    "vim.leader": "<space>",
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<C-d>"],
+            "after": ["<C-d>", "z", "z"]
+        },
+        {
+            "before": ["<C-u>"],
+            "after": ["<C-u>", "z", "z"]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // notebook
+        // {
+        //     "before": [""]
+        // }
+        {
+            "before": ["K"],
+            // "commands": ["editor.action.showHover"]
+            "commands": ["editor.action.showDefinitionPreviewHover"]
+        },
+        // copilot
+        {
+            "before": ["<leader>", "c", "c"],
+            "commands": ["copilot-chat.focus"]
+        },
+        /*
+            === Navigation ===
+        */
+        // change split size
+        {
+            "before": ["<leader>", "s", "+"],
+            "commands": ["workbench.action.increaseViewSize"]
+        },
+        {
+            "before": ["<leader>", "s", "-"],
+            "commands": ["workbench.action.decreaseViewSize"]
+        },
+        // Navigate panes using CTRL+hjkl
+        {
+            "before": ["<C-h>"],
+            "commands": ["workbench.action.navigateLeft"]
+        },
+        {
+            "before": ["<C-j>"],
+            "commands": ["workbench.action.navigateDown"]
+        },
+        {
+            "before": ["<C-k>"],
+            "commands": ["workbench.action.navigateUp"]
+        },
+        {
+            "before": ["<C-l>"],
+            "commands": ["workbench.action.navigateRight"]
+        },
+        // Jump half the page and center
+        {
+            "before": ["<C-d>"],
+            "after": ["<C-d>", "z", "z"]
+        },
+        {
+            "before": ["<C-u>"],
+            "after": ["<C-u>", "z", "z"]
+        },
+        // Show whichkey
+        // {
+        //     "before": ["<space>"],
+        //     "commands": ["whichkey.show"]
+        // },
+        // Cancel text highlighting
+        {
+            "before": ["<leader>", "n", "h"],
+            "commands": [":nohl"]
+        },
+        // Show all open tabs
+        {
+            "before": ["<leader>", "."],
+            "commands": ["workbench.action.showAllEditors"]
+        },
+        // Open file
+        {
+            "before": ["<leader>", "f", "f"],
+            "commands": ["workbench.action.quickOpen"]
+        },
+        // Search in files
+        {
+            "before": ["<leader>", "f", "s"],
+            "commands": ["workbench.action.findInFiles"]
+        },
+        // Code suggestions
+        {
+            "before": ["<leader>", "s", "s"],
+            "commands": ["editor.action.triggerSuggest"]
+        },
+        // Git
+        {
+            "before": ["<leader>", "l", "g"],
+            "commands": ["workbench.view.scm"]
+        },
+        /* 
+            === Code actions ===
+        */
+        {
+            "before": ["<leader>", "c", "m"],
+            "commands": ["errorLens.toggleInlineMessage"]
+        },
+        {
+            "before": ["<leader>", "c", "x"],
+            "commands": ["errorlens.excludeProblem"]
+        },
+        {
+            "before": ["<leader>", "c", "f"],
+            "commands": ["editor.action.formatDocument"]
+        },
+        // {
+        //     "before": ["<leader>", "c", "i"],
+        //     "commands": ["editor.action.organizeImports"]
+        // },
+        // {
+        //     "before": ["<leader>", "c", "o"],
+        //     "commands": ["editor.action.quickFix"]
+        // }
+        {
+            "before": ["<leader>", "c", "a"],
+            "commands": ["editor.action.codeAction"]
+        },
+        {
+            // "before": ["<leader>", "c", "r"],
+            "before": ["g", "r", "n"],
+            "commands": ["editor.action.rename"]
+        },
+        {
+            // "before": ["<leader>", "c", "s"],
+            "before": ["g", "O"],
+            "commands": ["workbench.action.gotoSymbol"]
+        },
+        {
+            "before": ["<leader>", "c", "w"],
+            "commands": ["workbench.action.showAllSymbols"] // searches for symbols under the cursor in the workspace
+        },
+        {
+            // "before": ["<leader>", "g", "d"],
+            "before": ["g", "r", "d"],
+            "commands": ["editor.action.revealDefinition"]
+        },
+        {
+            // "before": ["<leader>", "g", "a"],
+            "before": ["g", "r", "a"],
+            "commands": ["editor.action.revealDefinitionAside"]
+        },
+        {
+            // "before": ["<leader>", "g", "r"],
+            "before": ["g", "r", "r"],
+            "commands": ["editor.action.goToReferences"] // go to references
+        },
+        // Create splits
+        {
+            "before": ["leader", "s", "v"],
+            "commands": [":vsplit"]
+        },
+        {
+            "before": ["leader", "s", "h"],
+            "commands": [":split"]
+        },
+        // Navigate the Explorer
+        {
+            "before": ["leader", "e", "f"],
+            "commands": ["workbench.explorer.fileView.focus"]
+        },
+        {
+            "before": ["<leader>", "e", "e"],
+            "commands": ["workbench.action.toggleSidebarVisibility"]
+        },
+        {
+            "before": ["<leader>", "e", "a"],
+            "commands": ["fileutils.newFile"]
+        },
+        {
+            "before": ["<leader>", "e", "t"],
+            "commands": ["todo-tree-view.focus"]
+        }
+    ],
+    "vim.useCtrlKeys": true,
+    "vim.useSystemClipboard": true,
+    "vim.visualModeKeyBindings": [
+        // Allow indenting from visual mode
+        {
+            "before": ["<"],
+            "commands": ["editor.action.outdentLines"]
+        },
+        {
+            "before": [">"],
+            "commands": ["editor.action.indentLines"]
+        }
+    ],
+
+    /*
+        === UI Customization ===
+    */
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#fea229a9",
+        "statusBar.noFolderBackground": "#fea229a9",
+        "statusBar.debuggingBackground": "#fea229a9",
+        "statusBar.foreground": "#1e1e2e",
+        "statusBar.debuggingForeground": "#1e1e2e",
+        "statusBarItem.remoteBackground": "#7FB069",
+        "statusBarItem.remoteForeground": "#1e1e2e",
+        // "activityBar.background": "#1e1e2e",
+        "activityBar.foreground": "#fea229",
+        "activityBar.inactiveForeground": "#fea2297d",
+        // "activityBar.inactiveForeground": "#7FB069",
+        "activityBar.activeBorder": "#7FB069",
+        "activityBar.activeBackground": "#fea22920",
+        // "activityBar.activeBackground": "#7fb06981",
+        "activityBarBadge.background": "#7FB069",
+        "activityBarBadge.foreground": "#1e1e2e"
+    },
+
+    /* 
+        === Terminal ===
+    */
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    /*
+        === Formatting & Linting ===
+        For flake8.args, see:
+            - https://flake8.pycqa.org/en/latest/user/error-codes.html
+            - and: https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes            
+    */
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": false,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        "editor.formatOnType": true
+    },
+    "isort.args": ["--profile", "black"],
+    "flake8.args": [
+        "--max-line-length=88",
+        "--extend-ignore=E203,E501,E731,W293,E712"
+    ],
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace",
+        "prettier.tabWidth": 4
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace",
+        "prettier.tabWidth": 4
+    },
+    "editor.semanticHighlighting.enabled": true,
+    "terminal.integrated.minimumContrastRatio": 1,
+    "window.titleBarStyle": "custom",
+    "catppuccin.boldKeywords": true,
+    "catppuccin.italicComments": true,
+    "catppuccin.bracketMode": "rainbow",
+    "workbench.colorTheme": "Dune Arrakis Incandescent",
+    "catppuccin.workbenchMode": "minimal",
+    /*
+        === Todo Tree ===
+    */
+    "todo-tree.tree.scanMode": "open files",
+    "todo-tree.tree.expanded": true,
+    "todo-tree.tree.scanAtStartup": false,
+    // "todo-tree.highlights.useColourScheme": false,
+    "todo-tree.highlights.useColourScheme": true,
+    "todo-tree.highlights.defaultHighlight": {},
+    "todo-tree.general.tags": ["BUG", "FIXME", "TODO", "NOTE", "WARN", "INFO"],
+    "todo-tree.general.tagGroups": {
+        "TODO": ["TODO", "todo", "Todo", "ToDo"],
+        "FIXME": ["FIXME", "fixme", "FixMe"],
+        "NOTE": ["NOTE", "note", "Note"],
+        "INFO": ["INFO", "info", "Info"],
+        "BUG": ["BUG", "bug", "Bug", "Debug", "debug", "DEBUG"],
+        "WARN": ["WARN", "warn", "Warn"]
+    },
+    "todo-tree.highlights.customHighlight": {
+        "TODO": {
+            "foreground": "#1e1e2e", // Catppuccin base
+            "background": "#89b4fa", // Catppuccin blued
+            "icon": "check",
+            "type": "text"
+        },
+        "FIXME": {
+            "foreground": "#1e1e2e", // Catppuccin base
+            "background": "#f9c74f", // Catppuccin yellow
+            "icon": "bug",
+            "type": "text"
+        },
+        "NOTE": {
+            "foreground": "#1e1e2e", // Catppuccin base
+            "background": "#a6e3a1", // Catppuccin green
+            // "icon": "note",
+            "type": "text"
+        },
+        "INFO": {
+            "foreground": "#1e1e2e", // Catppuccin base
+            "background": "#89b4fa", // Catppuccin blue
+            "icon": "bookmark",
+            "type": "text"
+        },
+        "BUG": {
+            "foreground": "#1e1e2e", // Catppuccin base
+            "background": "#f38ba8", // Catppuccin red
+            "icon": "bug",
+            "type": "text"
+        },
+        "WARN": {
+            "foreground": "#1e1e2e", // Catppuccin base
+            "background": "#fab387", // Catppuccin peach
+            "icon": "check",
+            "type": "text"
+        }
+    },
+    /*
+        === Error Lens ===
+    */
+    "errorLens.messageEnabled": true,
+    "errorLens.fontStyleItalic": false,
+    "errorLens.fontWeight": "500",
+    "errorLens.margin": "8ch",
+    "errorLens.followCursor": "closestProblem",
+    "errorLens.respectUpstreamEnabled": {
+        "enabled": true,
+        "inlineMessage": true,
+        "gutter": true,
+        "statusBar": false
+    },
+    "errorLens.border": ["1px solid", "1px solid", "1px solid", "1px solid"],
+    "errorLens.borderRadius": "4em 4em 4em 4em",
+    "errorLens.messageTemplate": "$severity $message",
+    "errorLens.messageMaxChars": 200,
+    // "errorLens.severityText": ["■", "■", "■", "■"],
+    "errorLens.severityText": ["▣", "◈", "◉", "⛆"],
+    "errorLens.messageBackgroundMode": "message",
+    "errorLens.padding": "0px 2ch",
+    "errorLens.gutterIconsEnabled": true,
+    "errorLens.gutterIconSet": "circle",
+    // "errorLens.followCursor": "activeLine",
+    // "errorLens.gutterIconsFollowCursorOverride": false,
+    /*
+        === General ===
+    */
+    "notebook.output.textLineLimit": 60,
+    "editor.fontSize": 13,
+    "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
+    "errorLens.fontFamily": "JetBrainsMono Nerd Font Mono",
+    "notebook.markup.fontFamily": "JetBrainsMono Nerd Font Mono",
+    "chat.editor.fontFamily": "JetBrainsMono Nerd Font Mono",
+    "editor.codeLensFontFamily": "JetBrainsMono Nerd Font Mono",
+    "apc.font.family": "JetBrainsMono Nerd Font Mono",
+    "notebook.output.fontFamily": "JetBrainsMono Nerd Font Mono",
+    "workbench.editor.editorActionsLocation": "hidden",
+    "workbench.panel.showLabels": false,
+    "window.commandCenter": false,
+    "workbench.startupEditor": "none",
+    "workbench.tips.enabled": false,
+    "workbench.sideBar.location": "left",
+    "material-icon-theme.hidesExplorerArrows": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "explorer.compactFolders": false,
+    "editor.accessibilitySupport": "off",
+    "python.venvPath": "/Users/oliver/.pyenv/versions",
+    "python.defaultInterpreterPath": "/usr/local/bin/python3",
+    "editor.rulers": [79],
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.lineNumbers": "relative",
+    "editor.minimap.enabled": false,
+    "jupyter.askForKernelRestart": false,
+    "git.autofetch": true,
+    "notebook.lineNumbers": "on",
+    "notebook.defaultFormatter": "ms-python.black-formatter",
+    "workbench.layoutControl.enabled": false,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    // "window.title": "Copilot Chat – ${rootName}"
+    "editor.fontLigatures": true,
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+    "xml.symbols.maxItemsComputed": 2000,
+    "jupyter.widgetScriptSources": [
+        "jsdelivr.com",
+        "unpkg.com"
+    ],
+    "[yaml]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "redhat.telemetry.enabled": true
+}
