@@ -12,15 +12,43 @@ return {
 	lazy = false,
 	keys = {
 		-- Explorer (Filesystem)
-		{ "\\",         ":Neotree filesystem reveal left<CR>",  desc = "Explorer",   silent = true },
+		{ "\\", ":Neotree filesystem reveal left<CR>", desc = "Explorer", silent = true },
 		-- { "<leader>ee", ":Neotree filesystem reveal left<CR>", desc = "Explorer", silent = true },
-		{ "<leader>ee", ":Neotree filesystem toggle float<CR>", desc = "Explorer",   silent = true },
+		-- {
+		-- 	"<leader>ee",
+		-- 	function()
+		-- 		vim.cmd("Neotree filesystem reveal_file=" .. vim.fn.expand("%:p") .. " float")
+		-- 	end,
+		-- 	desc = "Explorer (follow current file)",
+		-- 	silent = true,
+		-- }, -- { "<leader>ee", ":Neotree filesystem toggle float<CR>", desc = "Explorer",   silent = true },
+		{
+			"<leader>ee",
+			function()
+				local manager = require("neo-tree.sources.manager")
+				local fs = manager.get_state("filesystem")
 
+				if fs and fs.winid and vim.api.nvim_win_is_valid(fs.winid) then
+					-- Neo-tree is open → close it
+					vim.cmd("Neotree close")
+				else
+					-- Neo-tree is closed → open and follow current file
+					local file = vim.fn.expand("%:p")
+					if vim.fn.filereadable(file) == 1 then
+						vim.cmd("Neotree filesystem reveal_file=" .. file .. " float")
+					else
+						vim.cmd("Neotree filesystem float")
+					end
+				end
+			end,
+			desc = "Explorer (float, follow file)",
+			silent = true,
+		},
 		-- Git Status (Floating)
 		{ "<leader>eg", ":Neotree git_status toggle float<CR>", desc = "Git Status", silent = true },
 
 		-- Buffers
-		{ "<leader>eb", ":Neotree buffers toggle float<CR>",    desc = "Buffers",    silent = true },
+		{ "<leader>eb", ":Neotree buffers toggle float<CR>", desc = "Buffers", silent = true },
 	},
 	sources = {
 		"filesystem",
@@ -119,8 +147,7 @@ return {
 								local path = node:get_id()
 								vim.cmd("DiffviewOpen " .. path)
 							else
-								vim.notify("Select a file to view its diff",
-									vim.log.levels.WARN)
+								vim.notify("Select a file to view its diff", vim.log.levels.WARN)
 							end
 						end,
 						desc = "Open Diffview for selected file",
@@ -184,8 +211,7 @@ return {
 								local path = node:get_id()
 								vim.cmd("DiffviewOpen " .. path)
 							else
-								vim.notify("Select a file to view its diff",
-									vim.log.levels.WARN)
+								vim.notify("Select a file to view its diff", vim.log.levels.WARN)
 							end
 						end,
 						desc = "Open Diffview for selected file",
